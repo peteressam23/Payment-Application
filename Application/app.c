@@ -4,8 +4,9 @@
 void main(void)
 {
 
-   getCardPANTest();
+   //getCardPANTest();
     //getCardExpiryDateTest();
+    getCardHolderNameTest();
     
     /*
    ST_cardData_t CardData;

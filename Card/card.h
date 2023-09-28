@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 
-uint8_t inputFromUser[25];
+uint8_t inputFromUser[30];
 
 
 typedef struct ST_cardData_t
