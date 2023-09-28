@@ -13,7 +13,49 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
 EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
 {
 
-    /*Please Write Comments 80% overall*/
+      int returnStatus = 1;
+     *inputFromUser = ' ';
+     printf("Enter Card Expiry Date: the format (MM/YY), e.g (05/25) \n");
+     fgets(inputFromUser , sizeof(inputFromUser) , stdin);          //Get the expiration date from user
+
+     int inputLen = strlen(inputFromUser);
+
+     //Remove the newline from InputExp to calculate the length
+     if(inputFromUser[inputLen-1] == '\n')
+     {
+        inputFromUser[inputLen-1] = 0;
+     }
+
+     //Check the length of Exp date
+     if(strlen(inputFromUser) !=5)
+     {
+        returnStatus = 0;
+     }
+
+     //Check the format
+     for(int i = 0 ; i<5 ; i++)
+     {
+        if( (isdigit(inputFromUser[i])) == 0  && i != 2  )
+        {
+            returnStatus = 0;
+        }
+        if( i == 2 && inputFromUser[i] != 47)
+        {
+            returnStatus = 0;
+        }
+     }
+
+     //Check the return status
+     if(returnStatus == 0)
+     {
+        return WRONG_EXP_DATE;
+     }
+     else
+     {
+       strcpy_s(cardData->cardExpirationDate , sizeof(inputFromUser) , inputFromUser );
+       return CARD_OK;
+     }
+
 }
 
 
