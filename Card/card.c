@@ -120,7 +120,7 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
             }
         }
     }
-
+    strcpy_s(cardData->primaryAccountNumber, sizeof(cardData->primaryAccountNumber), inputFromUser);
     return ErrorStatePAN;
 }
 
@@ -174,22 +174,24 @@ void getCardExpiryDateTest(void)
 
 void getCardPANTest(void)
 {
-    uint8_t Ittierate;
-    uint8_t TesterName[50];
-    ST_cardData_t testCardData;
-    uint8_t expectedCase[50];
-    EN_cardError_t expected;
+    ST_cardData_t test;
+    uint8_t tester_name[50];
+    uint8_t expected_case[50];
     char result[30];
-    
-    /*The Name Of Tester*/
-    printf("Tester Name: ");
-    gets(TesterName);
+    EN_cardError_t expected;
 
-    for (Ittierate = 0; Ittierate < 4 ; Ittierate++)
+
+    printf("Enter your name:\n");
+    gets(tester_name);
+
+    for (int i = 0 ; i < 5 ; i++) 
     {
-        expected = getCardPAN(testCardData.primaryAccountNumber);
+        expected = getCardPAN(test.primaryAccountNumber);
+        
+        
         printf("Enter expected result:\n");
-        gets(expectedCase);
+        gets(expected_case);
+
         switch (expected)
         {
         case 0:
@@ -202,17 +204,49 @@ void getCardPANTest(void)
             strcpy_s(result, 30, "undefined Error");
             break;
         }
-       
-
-        printf("\n\nTester Name :%sFunction Name: getCardPAN \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------\n"
-            , TesterName, Ittierate + 1, inputFromUser, expectedCase, result);
+        printf("\n\nTester Name :%sFunction Name: getCardPAN \nTest case %d:\nInput Data:%s\nExpected result : %s\nActual result: %s\n-----------------\n"
+            , tester_name, i+1, inputFromUser, expected_case, result);
     }
 }
 
  
     
 
+/*
+    uint8_t Ittierate;
+    uint8_t TesterName[50];
+    ST_cardData_t testCardData;
+    uint8_t expectedCase[50];
+    EN_cardError_t expected;
+    char result[30];
+    
+    The Name Of Tester
+printf("Tester Name: ");
+gets(TesterName);
 
+for (Ittierate = 0; Ittierate < 4; Ittierate++)
+{
+    expected = getCardPAN(testCardData.primaryAccountNumber);
+    printf("Enter expected result:\n");
+    gets(expectedCase);
+    switch (expected)
+    {
+    case 0:
+        strcpy_s(result, 30, "CARD_OK");
+        break;
+    case 3:
+        strcpy_s(result, 30, "WRONG_PAN");
+        break;
+    default:
+        strcpy_s(result, 30, "undefined Error");
+        break;
+    }
+
+
+    printf("\n\nTester Name :%sFunction Name: getCardPAN \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------\n"
+        , TesterName, Ittierate + 1, inputFromUser, expectedCase, result);
+}
+*/
 
 
 
