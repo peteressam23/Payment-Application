@@ -65,7 +65,6 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
     /*To Make Error State For PAN And Return This Error State*/
     EN_cardError_t ErrorStatePAN = WRONG_PAN;
 
-    
     printf("Enter Primary Account Number : ");
     gets(cardData->primaryAccountNumber);
 
@@ -105,44 +104,53 @@ void getCardExpiryDateTest(void)
 
 void getCardPANTest(void)
 {
-    uint8_t Ittierate = 0;
+    uint8_t Ittierate;
     uint8_t TesterName[50];
-    ST_cardData_t CardData;
-    EN_cardError_t ResultPANTestFun = WRONG_PAN;
+    ST_cardData_t testCardData;
+    uint8_t expectedCase[50];
 
- 
+    /*The Name Of Tester*/
+    printf("Tester Name: ");
+    gets(TesterName);
 
-    while (ResultPANTestFun == WRONG_PAN)
+    /*Print Function Name*/
+    printf("Function Name: getCardPAN\n");
+
+
+
+    for (Ittierate = 0; Ittierate < 4 ; Ittierate++)
     {
-        /*The Name Of Tester*/
-        printf("Tester Name: ");
-
-        /*To Input The Name Of Tester*/
-        gets(TesterName);
-
         /*Print Number Of Test Case Then ittierate*/
-        printf("Test Case %d :\n" , Ittierate+1);
-        Ittierate++;
+        printf("Test Case %d :\n", Ittierate + 1);
 
-        /*Print Function Name*/
-        printf("Function Name: getCardPAN\n");
-
-        /*Input Data By The Function */
-        printf("Input Data : ");
-        ResultPANTestFun = getCardPAN(CardData.primaryAccountNumber);
-        if (ResultPANTestFun == WRONG_PAN)
+        switch (getCardPAN(testCardData.primaryAccountNumber))
         {
-            printf("Expected Result : WRONG_PAN\n");
-            printf("Actual Result : WRONG_PAN\n\n");
-        }
-        else
-        {
-            printf("Expected Result : CARD_OK\n");
+        case 0:
+            printf("Expected Result :");
+            gets(expectedCase);
+            printf("Expected Result :");
             printf("Actual Result : CARD_OK\n\n");
             break;
+
+        case 3:
+            gets(expectedCase);
+            printf("Expected Result : %s\n", expectedCase);
+            printf("Actual Result : WRONG_PAN\n\n");
+            break;
+
+        default:
+
+            break;
         }
+
+        
     }
 }
+
+ 
+    
+    
+
 
 
 
