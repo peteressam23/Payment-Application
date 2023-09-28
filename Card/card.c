@@ -24,16 +24,12 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
     {
         Error_state = WRONG_NAME;
     }
-    //Check the length of the name to be min 20 characters
-    if (strlen(inputFromUser) < 20)
+    //Check the length of the name to be min 20 and maximum 24 characters
+    if (strlen(inputFromUser) < 20 || strlen(inputFromUser) > 24)
     {
         Error_state = WRONG_NAME;
     }
-    //Check the length of the name to be max 24 characters
-    if (strlen(inputFromUser) > 24)
-    {
-        Error_state = WRONG_NAME;
-    }
+ 
     //Check if the length is in the acceptable range
     if (strlen(inputFromUser) >= 20 && (strlen(inputFromUser) <= 24))
     {
