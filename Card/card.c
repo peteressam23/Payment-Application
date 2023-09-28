@@ -5,8 +5,37 @@
 
 EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
 {
-    /*Please Write Comments 80% overall*/
-    
+    //Start with wrong name state 
+    EN_cardError_t Error_state = WRONG_NAME;
+    //Get card holder name from the user
+    printf("\nEnter Card Holder Name: \n");
+    gets(cardData->cardHolderName);
+
+    //Check if the input is null
+    if (strlen(cardData->cardHolderName) == 0)
+    {
+        Error_state = WRONG_NAME;
+    }
+    //Check the length of the name to be min 20 characters
+    if (strlen(cardData->cardHolderName) < 20)
+    {
+        Error_state = WRONG_NAME;
+    }
+    //Check the length of the name to be max 24 characters
+    if (strlen(cardData->cardHolderName) > 24)
+    {
+        Error_state = WRONG_NAME;
+    }
+    //Check if the length is in the acceptable range 
+    if (strlen(cardData->cardHolderName) >= 20 && (strlen(cardData->cardHolderName) <= 24))
+    {
+        //This condition to check if the name is in the right format contains only alphabetic characters and spaces
+        if (isalpha(cardData->cardHolderName) || (isspace(cardData->cardHolderName)))
+        {
+            Error_state = CARD_OK;
+        }
+    }
+    return Error_state;
 
 }
 
