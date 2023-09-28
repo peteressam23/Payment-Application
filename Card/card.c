@@ -5,35 +5,51 @@
 
 EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
 {
-    //Start with wrong name state 
-    EN_cardError_t Error_state = WRONG_NAME;
+    //Start with card ok state
+    EN_cardError_t Error_state = CARD_OK;
+    *inputFromUser = ' ';
     //Get card holder name from the user
     printf("\nEnter Card Holder Name: \n");
-    gets(cardData->cardHolderName);
+    fgets(inputFromUser, sizeof(inputFromUser), stdin);
 
+    int inputLen = strlen(inputFromUser);
+
+    //Remove the newline from the holder name
+    if (inputFromUser[inputLen - 1] == '\n')
+    {
+        inputFromUser[inputLen - 1] = 0;
+    }
     //Check if the input is null
-    if (strlen(cardData->cardHolderName) == 0)
+    if (strlen(inputFromUser) == 0)
     {
         Error_state = WRONG_NAME;
     }
     //Check the length of the name to be min 20 characters
-    if (strlen(cardData->cardHolderName) < 20)
+    if (strlen(inputFromUser) < 20)
     {
         Error_state = WRONG_NAME;
     }
     //Check the length of the name to be max 24 characters
-    if (strlen(cardData->cardHolderName) > 24)
+    if (strlen(inputFromUser) > 24)
     {
         Error_state = WRONG_NAME;
     }
-    //Check if the length is in the acceptable range 
-    if (strlen(cardData->cardHolderName) >= 20 && (strlen(cardData->cardHolderName) <= 24))
+    //Check if the length is in the acceptable range
+    if (strlen(inputFromUser) >= 20 && (strlen(inputFromUser) <= 24))
     {
         //This condition to check if the name is in the right format contains only alphabetic characters and spaces
-        if (isalpha(cardData->cardHolderName) || (isspace(cardData->cardHolderName)))
+        for (int i = 0; i < strlen(inputFromUser); i++)
         {
-            Error_state = CARD_OK;
+            if (!isalpha(inputFromUser[i]) && !isspace(inputFromUser[i]))
+            {
+                Error_state = WRONG_NAME;
+                break;
+            }
         }
+    }
+    if (Error_state == CARD_OK)
+    {
+        strcpy_s(cardData->cardHolderName, sizeof(inputFromUser), inputFromUser);
     }
     return Error_state;
 
@@ -118,9 +134,39 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
 //Test Functions for card
 void getCardHolderNameTest(void)
 {
-    /*Please Write Comments 80% overall*/
+    uint8_t iterate = 0;
+    uint8_t testerName[50];
+    ST_cardData_t testCardData;
+    uint8_t expectedCase[50];
+    EN_cardError_t expected;
+    char result[20];
+
+    //To Get The Name Of Tester
+    printf("Tester Name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    //Iterations for different test cases
+    for (iterate = 1; iterate < 6; iterate++)
+    {
+        expected = getCardHolderName(testCardData.cardHolderName);
+        printf("Expected Result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+        switch (expected) {
+
+        case 0:
+            strcpy_s(result, 20, "CARD_OK");
+            break;
+        case 1:
+            strcpy_s(result, 20, "WRONG_NAME");
+            break;
+        default:
+            strcpy_s(result, 20, "UNDEFINED");
+        }
+        printf("Tester Name :%sFunction Name: getCardExpiryDate \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------------\n"
+            , tester_name, iterate, inputFromUser, expected_case, result);
 
 
+    }
 }
 
 void getCardExpiryDateTest(void)
