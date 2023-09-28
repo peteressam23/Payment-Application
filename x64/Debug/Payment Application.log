@@ -1,8 +1,10 @@
 ﻿  card.c
-D:\Payment Application\Payment Application\Card\card.c(38,14): warning C4013: 'isdigit' undefined; assuming extern returning int
-D:\Payment Application\Payment Application\Card\card.c(21,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Payment Application\Payment Application\Card\card.c(69,5): warning C4013: 'gets' undefined; assuming extern returning int
-D:\Payment Application\Payment Application\Card\card.c(72,48): warning C4047: '==': 'size_t' differs in levels of indirection from 'void *'
-D:\Payment Application\Payment Application\Card\card.c(126,40): warning C4133: 'function': incompatible types - from 'uint8_t [20]' to 'ST_cardData_t *'
-D:\Payment Application\Payment Application\Card\card.c(11): warning C4716: 'getCardHolderName': must return a value
+D:\Payment Application\Payment Application\Card\card.c(12,5): warning C4013: 'gets' undefined; assuming extern returning int
+D:\Payment Application\Payment Application\Card\card.c(33,13): warning C4013: 'isalpha' undefined; assuming extern returning int
+D:\Payment Application\Payment Application\Card\card.c(33,51): warning C4013: 'isspace' undefined; assuming extern returning int
+D:\Payment Application\Payment Application\Card\card.c(66,14): warning C4013: 'isdigit' undefined; assuming extern returning int
+D:\Payment Application\Payment Application\Card\card.c(49,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Payment Application\Payment Application\Card\card.c(100,48): warning C4047: '==': 'size_t' differs in levels of indirection from 'void *'
+D:\Payment Application\Payment Application\Card\card.c(140,42): warning C4133: 'function': incompatible types - from 'uint8_t [6]' to 'ST_cardData_t *'
+D:\Payment Application\Payment Application\Card\card.c(172,38): warning C4133: 'function': incompatible types - from 'uint8_t [20]' to 'ST_cardData_t *'
   Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe

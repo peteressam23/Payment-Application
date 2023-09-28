@@ -41,7 +41,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
 
 EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
 {
-
+    /* Note : Month Format */
       int returnStatus = 1;
      *inputFromUser = ' ';
      printf("Enter Card Expiry Date: the format (MM/YY), e.g (05/25) \n");
@@ -92,30 +92,41 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
 EN_cardError_t getCardPAN(ST_cardData_t *cardData)
 {
     /*To Make Error State For PAN And Return This Error State*/
-    EN_cardError_t ErrorStatePAN = WRONG_PAN;
+    EN_cardError_t ErrorStatePAN = CARD_OK;
+    *inputFromUser = ' ';
 
     printf("Enter Primary Account Number : ");
-    gets(cardData->primaryAccountNumber);
+    gets(inputFromUser);
+
+    //Remove the newline from InputExp to calculate the length
+    uint8_t inputLen = strlen(inputFromUser);
+    if (inputFromUser[inputLen - 1] == '\n')
+    {
+        inputFromUser[inputLen - 1] = 0;
+    }
 
     /*This Condition If User Input Null (Dont Input Any Thing*/
-    if (strlen(cardData->primaryAccountNumber) == NULL)
+    if (strlen(inputFromUser) == NULL || strlen(inputFromUser) < 16 || strlen(inputFromUser) > 19)
     {
         ErrorStatePAN = WRONG_PAN;
     }
-    /*This Condition If User Input Value Less Than 16 And More Than 19*/
-    else if (strlen(cardData->primaryAccountNumber) < 16 || strlen(cardData->primaryAccountNumber) > 19)
-    {
-        ErrorStatePAN = WRONG_PAN;
+
+    //numeric chars check
+    for (int i = 0; i < strlen(inputFromUser); i++) {
+        if (isdigit(inputFromUser[i]) == 0) {
+            if (isspace(inputFromUser[i]) == 0) {
+
+                ErrorStatePAN = WRONG_PAN;
+            }
+        }
     }
-    /*This Condition If User Input Value Start From 16 And End In 19 */
-    else
-    {
-        ErrorStatePAN = CARD_OK;
-    }   
+
     return ErrorStatePAN;
 }
 
+
 //Test Functions for card
+
 void getCardHolderNameTest(void)
 {
     /*Please Write Comments 80% overall*/
@@ -125,7 +136,37 @@ void getCardHolderNameTest(void)
 
 void getCardExpiryDateTest(void)
 {
-    /*Please Write Comments 80% overall*/
+    ST_cardData_t test;
+    uint8_t tester_name[50];
+    uint8_t expected_case[50];
+    uint8_t iterate = 0;
+    char result[30];
+    EN_cardError_t expected;
+
+    printf("Enter your name:\n");
+    fgets(tester_name, sizeof(tester_name), stdin);
+
+    for (iterate = 0; iterate < 5 ; iterate++)
+    {
+        expected = getCardExpiryDate(test.cardExpirationDate);
+        printf("Enter expected result:\n");
+        fgets(expected_case, sizeof(expected_case), stdin);
+        switch (expected) 
+        {
+        case 0:
+            strcpy_s(result, 30, "CARD_OK");
+            break;
+        case 2:
+            strcpy_s(result, 30, "WRONG_EXP_DATE");
+            break;
+        default:
+            strcpy_s(result, 30, "undefined Error");
+            break;
+        }
+
+        printf("\n\nTester Name :%sFunction Name: getCardExpiryDate \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------\n"
+            , tester_name, iterate+1 , inputFromUser, expected_case, result);
+    }
 
 }
 
@@ -137,48 +178,40 @@ void getCardPANTest(void)
     uint8_t TesterName[50];
     ST_cardData_t testCardData;
     uint8_t expectedCase[50];
-
+    EN_cardError_t expected;
+    char result[30];
+    
     /*The Name Of Tester*/
     printf("Tester Name: ");
     gets(TesterName);
 
-    /*Print Function Name*/
-    printf("Function Name: getCardPAN\n");
-
-
-
     for (Ittierate = 0; Ittierate < 4 ; Ittierate++)
     {
-        /*Print Number Of Test Case Then ittierate*/
-        printf("Test Case %d :\n", Ittierate + 1);
-
-        switch (getCardPAN(testCardData.primaryAccountNumber))
+        expected = getCardPAN(testCardData.primaryAccountNumber);
+        printf("Enter expected result:\n");
+        gets(expectedCase);
+        switch (expected)
         {
         case 0:
-            printf("Expected Result :");
-            gets(expectedCase);
-            printf("Expected Result :");
-            printf("Actual Result : CARD_OK\n\n");
+            strcpy_s(result, 30, "CARD_OK");
             break;
-
         case 3:
-            gets(expectedCase);
-            printf("Expected Result : %s\n", expectedCase);
-            printf("Actual Result : WRONG_PAN\n\n");
+            strcpy_s(result, 30, "WRONG_PAN");
             break;
-
         default:
-
+            strcpy_s(result, 30, "undefined Error");
             break;
         }
+       
 
-        
+        printf("\n\nTester Name :%sFunction Name: getCardPAN \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------\n"
+            , TesterName, Ittierate + 1, inputFromUser, expectedCase, result);
     }
 }
 
  
     
-    
+
 
 
 
