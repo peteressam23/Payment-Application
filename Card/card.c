@@ -1,0 +1,108 @@
+
+#include "card.h"
+
+// Function Implementations 
+
+EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
+{
+    /*Please Write Comments 80% overall*/
+    
+
+}
+
+EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
+{
+
+    /*Please Write Comments 80% overall*/
+}
+
+
+
+EN_cardError_t getCardPAN(ST_cardData_t *cardData)
+{
+    /*To Make Error State For PAN And Return This Error State*/
+    EN_cardError_t ErrorStatePAN = WRONG_PAN;
+
+    
+    printf("Enter Primary Account Number : ");
+    gets(cardData->primaryAccountNumber);
+
+    /*This Condition If User Input Null (Dont Input Any Thing*/
+    if (strlen(cardData->primaryAccountNumber) == NULL)
+    {
+        ErrorStatePAN = WRONG_PAN;
+    }
+    /*This Condition If User Input Value Less Than 16 And More Than 19*/
+    else if (strlen(cardData->primaryAccountNumber) < 16 || strlen(cardData->primaryAccountNumber) > 19)
+    {
+        ErrorStatePAN = WRONG_PAN;
+    }
+    /*This Condition If User Input Value Start From 16 And End In 19 */
+    else
+    {
+        ErrorStatePAN = CARD_OK;
+    }   
+    return ErrorStatePAN;
+}
+
+//Test Functions for card
+void getCardHolderNameTest(void)
+{
+    /*Please Write Comments 80% overall*/
+
+
+}
+
+void getCardExpiryDateTest(void)
+{
+    /*Please Write Comments 80% overall*/
+
+}
+
+
+
+void getCardPANTest(void)
+{
+    uint8_t Ittierate = 0;
+    uint8_t TesterName[50];
+    ST_cardData_t CardData;
+    EN_cardError_t ResultPANTestFun = WRONG_PAN;
+
+ 
+
+    while (ResultPANTestFun == WRONG_PAN)
+    {
+        /*The Name Of Tester*/
+        printf("Tester Name: ");
+
+        /*To Input The Name Of Tester*/
+        gets(TesterName);
+
+        /*Print Number Of Test Case Then ittierate*/
+        printf("Test Case %d :\n" , Ittierate+1);
+        Ittierate++;
+
+        /*Print Function Name*/
+        printf("Function Name: getCardPAN\n");
+
+        /*Input Data By The Function */
+        printf("Input Data : ");
+        ResultPANTestFun = getCardPAN(CardData.primaryAccountNumber);
+        if (ResultPANTestFun == WRONG_PAN)
+        {
+            printf("Expected Result : WRONG_PAN\n");
+            printf("Actual Result : WRONG_PAN\n\n");
+        }
+        else
+        {
+            printf("Expected Result : CARD_OK\n");
+            printf("Actual Result : CARD_OK\n\n");
+            break;
+        }
+    }
+}
+
+
+
+
+

@@ -1,0 +1,7 @@
+﻿  card.c
+D:\Payment Application\Payment Application\Card\card.c(28,5): warning C4013: 'gets' undefined; assuming extern returning int
+D:\Payment Application\Payment Application\Card\card.c(31,48): warning C4047: '==': 'size_t' differs in levels of indirection from 'void *'
+D:\Payment Application\Payment Application\Card\card.c(90,47): warning C4133: 'function': incompatible types - from 'uint8_t [20]' to 'ST_cardData_t *'
+D:\Payment Application\Payment Application\Card\card.c(17): warning C4716: 'getCardExpiryDate': must return a value
+D:\Payment Application\Payment Application\Card\card.c(11): warning C4716: 'getCardHolderName': must return a value
+  Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
