@@ -4,7 +4,7 @@
 void main(void)
 {
 
-    getCardPANTest();
+    //getCardPANTest();
     
     /*
    ST_cardData_t CardData;
