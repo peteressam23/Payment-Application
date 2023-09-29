@@ -1,10 +1,10 @@
 #include "terminal.h"
 
-// Function Implementations 
+// Function Implementations
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
-
+    /*Moustafa*/
     time_t currentTime;
     struct tm *timeInfo;
     uint8_t inputLen;
@@ -103,15 +103,15 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
     }
     /*
     The &storeFirstInvalidChar argument is used to store the address of the first invalid character
-    encountered during the conversion. After the conversion, 
+    encountered during the conversion. After the conversion,
     storeFirstInvalidChar will point to the first character
-    that couldn't be converted to a float. 
+    that couldn't be converted to a float.
     This can be useful if you need to check for errors
     or process any remaining characters in the input string that were not converted.
     */
     termData->transAmount = strtof(inputFromUser , & storeFirstInvalidChar);
-   
-    if (termData->transAmount <= 0) 
+
+    if (termData->transAmount <= 0)
     {
         errorStateTransactionAmount =  INVALID_AMOUNT;
     }
@@ -163,7 +163,7 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
 EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 {
     /*Please Write Comments 80% overall*/
-    
+
 }
 
 
@@ -193,11 +193,11 @@ void isCardExpriedTest(void)
 void getTransactionAmountTest(void)
 {
     ST_terminalData_t testTerminalData;
-    uint8_t testerName[50]; 
-    uint8_t expectedCase[50]; 
-    uint8_t iterate = 0; 
-    uint8_t result[30]; 
-    EN_cardError_t returnOfFunction; 
+    uint8_t testerName[50];
+    uint8_t expectedCase[50];
+    uint8_t iterate = 0;
+    uint8_t result[30];
+    EN_cardError_t returnOfFunction;
 
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
@@ -206,9 +206,9 @@ void getTransactionAmountTest(void)
     {
         returnOfFunction = getTransactionAmount(&testTerminalData);
 
-        printf("Enter expected result: "); 
+        printf("Enter expected result: ");
         fgets(expectedCase, sizeof(expectedCase), stdin);
-        
+
 
         switch (returnOfFunction)
         {
