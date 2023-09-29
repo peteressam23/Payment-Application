@@ -1,7 +1,7 @@
 #include "terminal.h"
 
 // Function Implementations 
-
+/*hi*/
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 {
     /*Please Write Comments 80% overall*/
