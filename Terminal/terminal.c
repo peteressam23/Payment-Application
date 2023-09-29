@@ -177,6 +177,41 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 //Test Functions for terminal
 void getTransactionDateTest(void)
 {
+    ST_terminalData_t testTerminalData;
+    uint8_t testerName[50]; 
+    uint8_t expectedCase[50]; 
+    uint8_t iterate = 0; 
+    uint8_t result[30]; 
+    EN_cardError_t returnOfFunction; 
+
+    printf("Enter your name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    for (iterate = 0 ; iterate < 5 ; iterate++)
+    {
+        returnOfFunction = getTransactionDate(&testTerminalData);
+
+        printf("Enter expected result: "); 
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+        
+
+        switch (returnOfFunction)
+        {
+        case 0:
+            strcpy_s(result, 30, "TERMINAL_OK");
+            break;
+        case 1:
+            strcpy_s(result, 30, "INVALID_AMOUNT");
+            break;
+        default:
+            strcpy_s(result, 30, "undefined Error");
+            break;
+        }
+
+        printf("\n\nTester Name :%sFunction Name: getTransactionDate \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
+            , testerName, iterate + 1, inputFromUser, expectedCase, result);
+    }
+
 
 }
 
