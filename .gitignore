@@ -7,3 +7,32 @@
 .vs/Payment-Application/v17/Browse.VC.opendb
 .vs/Payment-Application/v17/Browse.VC.db-shm
 .vs/slnx.sqlite
+.vs/Payment Application/v17/Browse.VC.db
+.vs/Payment Application/v17/Browse.VC.db-shm
+.vs/Payment Application/v17/Browse.VC.db-wal
+.vs/Payment Application/v17/ipch/AutoPCH/600412d02cfac41d/CARD.ipch
+.vs/Payment Application/v17/Browse.VC.opendb
+.vs/Payment Application/v17/ipch/AutoPCH/76e77a5ab24f13f5/TERMINAL.ipch
+.vs/Payment Application/v17/ipch/AutoPCH/163c1961f4b2fbfe/APP.ipch
+x64/Debug/Payment .8ba73c44.tlog/unsuccessfulbuild
+.vs/Payment Application/v17/ipch/AutoPCH/82d15bce34d6add0/APP.ipch
+x64/Release/card.obj
+x64/Release/app.obj
+x64/Release/Payment .8ba73c44.tlog/CL.read.1.tlog
+x64/Release/Payment .8ba73c44.tlog/Cl.items.tlog
+x64/Release/Payment .8ba73c44.tlog/CL.command.1.tlog
+x64/Release/Payment .8ba73c44.tlog/link.read.1.tlog
+x64/Release/Payment .8ba73c44.tlog/Payment Application.lastbuildstate
+x64/Release/Payment .8ba73c44.tlog/link.write.2u.tlog
+x64/Release/Payment Application.exe
+x64/Release/Payment Application.ipdb
+*.pdb
+x64/Release/Payment Application.log
+x64/Release/Payment Application.exe.recipe
+x64/Release/Payment .8ba73c44.tlog/link.write.1.tlog
+x64/Release/server.obj
+x64/Release/Payment Application.vcxproj.FileListAbsolute.txt
+x64/Release/Payment .8ba73c44.tlog/CL.write.1.tlog
+x64/Release/Payment Application.iobj
+x64/Release/Payment .8ba73c44.tlog/link.command.1.tlog
+x64/Release/terminal.obj
