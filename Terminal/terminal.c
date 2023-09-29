@@ -197,7 +197,7 @@ void getTransactionDateTest(void)
             strcpy_s(result, 30, "TERMINAL_OK");
             break;
         case 1:
-            strcpy_s(result, 30, "INVALID_AMOUNT");
+            strcpy_s(result, 30, "WRONG_DATE");
             break;
         default:
             strcpy_s(result, 30, "undefined Error");
