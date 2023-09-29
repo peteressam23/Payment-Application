@@ -63,7 +63,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
          strcpy_s(termData->transactionDate, sizeof(termData->transactionDate) ,dateString);
          
      }
-     else if (errorStateTransactionDate == TERMINAL_OK )
+     if (errorStateTransactionDate == TERMINAL_OK )
      {
          strcpy_s(termData->transactionDate, sizeof(termData->transactionDate), inputFromUser);
 	     
