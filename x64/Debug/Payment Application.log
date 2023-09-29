@@ -1,6 +1,11 @@
 ﻿  app.c
   terminal.c
+D:\Payment Application\Payment Application\Terminal\terminal.c(20,17): warning C4047: 'function': 'tm *const ' differs in levels of indirection from 'tm **'
+D:\Payment Application\Payment Application\Terminal\terminal.c(20,17): warning C4024: 'localtime_s': different types for formal and actual parameter 1
+D:\Payment Application\Payment Application\Terminal\terminal.c(21,58): warning C4047: 'function': 'const tm *' differs in levels of indirection from 'tm **'
+D:\Payment Application\Payment Application\Terminal\terminal.c(21,58): warning C4024: 'strftime': different types for formal and actual parameter 4
+D:\Payment Application\Payment Application\Terminal\terminal.c(27,17): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
+D:\Payment Application\Payment Application\Terminal\terminal.c(59,89): warning C4047: 'function': 'const tm *' differs in levels of indirection from 'tm **'
+D:\Payment Application\Payment Application\Terminal\terminal.c(59,89): warning C4024: 'asctime': different types for formal and actual parameter 1
+D:\Payment Application\Payment Application\Terminal\terminal.c(59,81): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   Generating Code...
-D:\Payment Application\Payment Application\Terminal\terminal.c(78): warning C4716: 'isCardExpired': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(169): warning C4716: 'isValidCardPAN': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(265): error C4700: uninitialized local variable 'maxAmountTest' used
