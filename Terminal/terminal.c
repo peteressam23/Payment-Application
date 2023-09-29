@@ -17,9 +17,8 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 
     //Save the system date in dateString Variable.
     time(&currentTime);
-    timeInfo = localtime(&currentTime);
-    strftime(dateString, sizeof(dateString), "%d/%m/%Y", timeInfo);
-
+    localtime_s(&timeInfo, &currentTime);
+    strftime(dateString, sizeof(dateString), "%d/%m/%Y", &timeInfo);
 
 
     //Get the transaction date from user
