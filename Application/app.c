@@ -14,18 +14,19 @@ void main(void)
     // getCardPANTest();
 
     /*Terminal Section*/
-    /*
-  
+    
+  /*
     ST_terminalData_t testAmount;
     EN_terminalError_t errorStateTransactionAmount;
 
-    errorStateTransactionAmount = setMaxAmount(&testAmount , 1000);
+    errorStateTransactionAmount = getTransactionAmount(&testAmount);
     printf("%d", errorStateTransactionAmount);
     
-   
    */
+   
  //   getTransactionAmountTest();
    setMaxAmountTest();
+   // getTransactionDateTest();
    
    
     
