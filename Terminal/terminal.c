@@ -56,7 +56,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
      if (errorStateTransactionDate == WRONG_DATE )
      {
          printf("Wrong transaction date - Use system date ");
-         strcpy_s(termData->transactionDate, sizeof(termData->transactionDate) ,asctime(&timeInfo));
+         strcpy_s(termData->transactionDate, sizeof(termData->transactionDate) ,dateString);
          return errorStateTransactionDate;
 
      }
@@ -172,7 +172,6 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 //Test Functions for terminal
 void getTransactionDateTest(void)
 {
-    /*Please Write Comments 80% overall*/
 
 }
 
