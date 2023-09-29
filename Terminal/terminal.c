@@ -78,7 +78,7 @@ EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *ter
     uint8_t expYear=(uint8_t)strtol(&cardData->cardExpirationDate[3],&endptr,10);
     uint8_t transactionMonth=(uint8_t)strtol(&termData->transactionDate[3],&endptr,10);
     uint8_t transactionYear=(uint8_t)strtol(&termData->transactionDate[8],&endptr,10);
-
+    /*test*/
     //Check if the expiry year is larger than year of transaction date so it's not expired
     if(expYear>transactionYear)
     {
