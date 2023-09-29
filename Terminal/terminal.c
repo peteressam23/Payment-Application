@@ -87,6 +87,7 @@ EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *ter
         errorStateCardExpired = TERMINAL_OK;
     }
     /*/000*/
+
     if (expYear == transactionYear)
     {
         //If the years are the same compare the months
