@@ -5,6 +5,7 @@
 
 EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
 {
+    /*HI*/
     //Start with card ok state
     EN_cardError_t errorStateHolderName = CARD_OK;
     uint8_t inputLen;
