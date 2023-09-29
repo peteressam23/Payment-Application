@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-
+//Global array to save and print user input when do test 
 uint8_t inputFromUser[30];
 
 
@@ -32,9 +32,6 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData);
 void getCardHolderNameTest(void);
 void getCardExpiryDateTest(void);
 void getCardPANTest(void);
-
-
-
 
 
 #endif /*CARD_H*/ 
