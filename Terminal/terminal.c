@@ -270,10 +270,44 @@ void getTransactionAmountTest(void)
 /********************************************************************************************************************************/
 
 
-void isBelowMaxAmountTest(void)
-{
+void isBelowMaxAmountTest(void) 
+{	
+	ST_terminalData_t testTerminalData;
+	testTerminalData.maxTransAmount = 50000;   //Set maxTransAmount for testing.
+    uint8_t testerName[50];
+    uint8_t expectedCase[50];
+    uint8_t iterate = 0;
+    uint8_t result[30];
+    EN_cardError_t returnOfFunction;
 
-    /*Please Write Comments 80% overall*/
+	
+	printf("Enter your name:");
+	fgets(tester_name, sizeof(tester_name), stdin);
+	
+	for ( iterate ; iterate < 5; iterate++) 
+	{
+	    returnOfFunction = isBelowMaxAmount(&testTerminalData);
+		
+		printf("Enter expected result:");
+		fgets(expected_case, sizeof(expected_case), stdin);
+		
+	
+        switch (returnOfFunction)
+        {
+        case 0:
+            strcpy_s(result, 30, "TERMINAL_OK");
+            break;
+        case 5:
+            strcpy_s(result, 30, "EXCEED_MAX_AMOUNT");
+            break;
+        default:
+            strcpy_s(result, 30, "undefined Error");
+            break;
+        }
+
+        printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
+            , testerName, iterate + 1, inputFromUser, expectedCase, result);	
+	}
 }
 
 /********************************************************************************************************************************/
