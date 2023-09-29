@@ -4,7 +4,7 @@
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
-    /*Moustafa*/
+    /*Nadeen*/
     time_t currentTime;
     struct tm *timeInfo;
     uint8_t inputLen;
