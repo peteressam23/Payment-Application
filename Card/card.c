@@ -12,7 +12,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
     *inputFromUser = ' ';
 
     //Get card holder name from the user
-    printf("\nEnter Card Holder Name: \n");
+    printf("Enter Card Holder Name: ");
     fgets(inputFromUser, sizeof(inputFromUser), stdin);
 
      inputLen = strlen(inputFromUser);
@@ -69,7 +69,7 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
      uint8_t iterate = 0;
 
      //Get the expiration date from user
-     printf("Enter Card Expiry Date: the format (MM/YY), e.g (05/25) \n");
+     printf("Enter Card Expiry Date: the format (MM/YY), e.g (05/25): ");
      fgets(inputFromUser , sizeof(inputFromUser) , stdin);          
 
       inputLen = strlen(inputFromUser);
@@ -121,7 +121,7 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
     *inputFromUser = ' ';
     uint8_t iterate = 0;
 
-    printf("Enter Primary Account Number : ");
+    printf("Enter Primary Account Number: ");
     gets(inputFromUser);
 
     //Remove the newline from InputExp to calculate the length
@@ -167,7 +167,7 @@ void getCardHolderNameTest(void)
     ST_cardData_t testCardData;
     uint8_t expectedCase[50];
     EN_cardError_t returnOfFunction;
-    char result[30];
+    uint8_t result[30];
 
     //To Get The Name Of Tester
     printf("Tester Name: ");
@@ -204,16 +204,16 @@ void getCardExpiryDateTest(void)
     uint8_t testerName[50];
     uint8_t expectedCase[50];
     uint8_t iterate = 0;
-    char result[30];
+    uint8_t result[30];
     EN_cardError_t returnOfFunction;
 
-    printf("Enter your name:\n");
+    printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
     for (iterate = 0; iterate < 5 ; iterate++)
     {
         returnOfFunction = getCardExpiryDate(testCardData.cardExpirationDate);
-        printf("Enter expected result:\n");
+        printf("Enter expected result: ");
         fgets(expectedCase, sizeof(expectedCase), stdin);
         switch (returnOfFunction)
         {
@@ -241,12 +241,12 @@ void getCardPANTest(void)
     ST_cardData_t testCardData;
     uint8_t testerName[50];
     uint8_t expectedCase[50];
-    char result[30];
+    uint8_t result[30];
     EN_cardError_t returnOfFunction;
     uint8_t iterate = 0;
 
 
-    printf("Enter your name:\n");
+    printf("Enter your name: ");
     gets(testerName);
 
     for (iterate = 0 ; iterate < 5 ; iterate++)
@@ -254,7 +254,7 @@ void getCardPANTest(void)
         returnOfFunction = getCardPAN(testCardData.primaryAccountNumber);
         
         
-        printf("Enter expected result:\n");
+        printf("Enter expected result: ");
         gets(expectedCase);
 
         switch (returnOfFunction)

@@ -7,10 +7,10 @@ void main(void)
     getCardHolderNameTest();
 
     /*Test Card Expire Date*/
-    getCardExpiryDateTest();
+     getCardExpiryDateTest();
 
     /*Test Card PAN*/
-    getCardPANTest();
+     getCardPANTest();
    
    
     
