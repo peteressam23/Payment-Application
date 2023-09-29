@@ -27,13 +27,8 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
     {
         errorStateHolderName = WRONG_NAME;
     }
-    //Check the length of the name to be min 20 characters
-    if (strlen(inputFromUser) < 20)
-    {
-        errorStateHolderName = WRONG_NAME;
-    }
-    //Check the length of the name to be max 24 characters
-    if (strlen(inputFromUser) > 24)
+    //Check the length of the name to be min 20 and max 24 characters
+    if (strlen(inputFromUser) < 20 || strlen(inputFromUser) > 24)
     {
         errorStateHolderName = WRONG_NAME;
     }
@@ -52,6 +47,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
     }
     if (errorStateHolderName == CARD_OK)
     {
+        //To store the input only if it is right
         strcpy_s(cardData->cardHolderName, sizeof(inputFromUser), inputFromUser);
     }
     return errorStateHolderName;
@@ -64,7 +60,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
 EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
 {
      uint8_t inputLen;
-     uint8_t returnStatus = 1;
+     EN_cardError_t errorStateExpireDate = WRONG_EXP_DATE;
      *inputFromUser = ' ';
      uint8_t iterate = 0;
 
@@ -83,7 +79,7 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
      //Check the length of Exp date
      if(strlen(inputFromUser) !=5)
      {
-        returnStatus = 0;
+         errorStateExpireDate = CARD_OK;
      }
 
      //Check the format
@@ -91,24 +87,26 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
      {
         if( (isdigit(inputFromUser[iterate])) == 0  && iterate != 2  )
         {
-            returnStatus = 0;
+            errorStateExpireDate = CARD_OK;
         }
         if(iterate == 2 && inputFromUser[iterate] != 47)
         {
-            returnStatus = 0;
+            errorStateExpireDate = CARD_OK;
         }
      }
 
      //Check the return status
-     if(returnStatus == 0)
+     if(errorStateExpireDate == CARD_OK)
      {
-        return WRONG_EXP_DATE;
+         errorStateExpireDate = WRONG_EXP_DATE;
+        
      }
      else
      {
        strcpy_s(cardData->cardExpirationDate , sizeof(inputFromUser) , inputFromUser );
-       return CARD_OK;
+       errorStateExpireDate =  CARD_OK;
      }
+     return errorStateExpireDate;
 
 }
 

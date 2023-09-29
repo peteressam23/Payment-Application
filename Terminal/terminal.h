@@ -1,7 +1,11 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
+#include <time.h>
 #include "../Card/card.h"
+
+//Global array to save and print user input when do test 
+uint8_t inputFromUser[40];
 
 typedef struct ST_terminalData_t
 {

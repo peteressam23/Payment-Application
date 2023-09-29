@@ -2,6 +2,7 @@
 #define APP_H
 
 #include "../Card/card.h"
+#include "../Terminal/terminal.h"
 
 
 

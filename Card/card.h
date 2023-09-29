@@ -5,9 +5,10 @@
 #include<string.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 //Global array to save and print user input when do test 
-uint8_t inputFromUser[30];
+uint8_t inputFromUser[40];
 
 
 typedef struct ST_cardData_t
