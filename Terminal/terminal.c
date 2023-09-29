@@ -1,5 +1,6 @@
 #include "terminal.h"
-
+/*Mario*/
+/*Moustafa*/
 // Function Implementations 
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
