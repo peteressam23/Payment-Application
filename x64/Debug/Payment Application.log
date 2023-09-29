@@ -1,6 +1,6 @@
-﻿  terminal.c
-D:\Payment Application\Payment Application\Terminal\terminal.c(8): warning C4716: 'getTransactionDate': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(13): warning C4716: 'isCardExpired': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(64): warning C4716: 'isBelowMaxAmount': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(94): warning C4716: 'isValidCardPAN': must return a value
-  Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
+﻿  app.c
+  terminal.c
+  Generating Code...
+D:\Payment Application\Payment Application\Terminal\terminal.c(78): warning C4716: 'isCardExpired': must return a value
+D:\Payment Application\Payment Application\Terminal\terminal.c(169): warning C4716: 'isValidCardPAN': must return a value
+D:\Payment Application\Payment Application\Terminal\terminal.c(265): error C4700: uninitialized local variable 'maxAmountTest' used
