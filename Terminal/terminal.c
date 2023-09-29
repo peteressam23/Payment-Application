@@ -1,6 +1,6 @@
 #include "terminal.h"
 
-// Function Implementations 
+// Function Implementations
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
 
@@ -70,7 +70,33 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 
 EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *termData)
 {
-    /*Please Write Comments 80% overall*/
+    EN_terminalError_t errorStateCardExpired=TERMINAL_OK;
+    uint8_t *endptr;
+
+    //convert string to long integer using strtol and casting its return to uint8_t
+    uint8_t expMonth=(uint8_t)strtol(cardData->cardExpirationDate,&endptr,10);
+    uint8_t expYear=(uint8_t)strtol(&cardData->cardExpirationDate[3],&endptr,10);
+    uint8_t transactionMonth=(uint8_t)strtol(&termData->transactionDate[3],&endptr,10);
+    uint8_t transactionYear=(uint8_t)strtol(&termData->transactionDate[8],&endptr,10);
+
+    //Check if the expiry year is larger than year of transaction date so it's not expired
+    if(expYear>transactionYear)
+    {
+        errorStateCardExpired=TERMINAL_OK;
+    }
+    if(expYear==transactionYear)
+    {
+        //If the years are the same compare the months
+        if(expMonth>=transactionMonth)
+        {
+            errorStateCardExpired=TERMINAL_OK;
+        }
+    }
+    else
+    {
+       errorStateCardExpired=EXPIRED_CARD;
+    }
+    return errorStateCardExpired;
 }
 
 
@@ -101,15 +127,15 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
     }
     /*
     The &storeFirstInvalidChar argument is used to store the address of the first invalid character
-    encountered during the conversion. After the conversion, 
+    encountered during the conversion. After the conversion,
     storeFirstInvalidChar will point to the first character
-    that couldn't be converted to a float. 
+    that couldn't be converted to a float.
     This can be useful if you need to check for errors
     or process any remaining characters in the input string that were not converted.
     */
     termData->transAmount = strtof(inputFromUser , & storeFirstInvalidChar);
-   
-    if (termData->transAmount <= 0) 
+
+    if (termData->transAmount <= 0)
     {
         errorStateTransactionAmount =  INVALID_AMOUNT;
     }
@@ -160,7 +186,7 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
 EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 {
     /*Please Write Comments 80% overall*/
-    
+
 }
 
 
@@ -182,11 +208,11 @@ void isCardExpriedTest(void)
 void getTransactionAmountTest(void)
 {
     ST_terminalData_t testTerminalData;
-    uint8_t testerName[50]; 
-    uint8_t expectedCase[50]; 
-    uint8_t iterate = 0; 
-    uint8_t result[30]; 
-    EN_cardError_t returnOfFunction; 
+    uint8_t testerName[50];
+    uint8_t expectedCase[50];
+    uint8_t iterate = 0;
+    uint8_t result[30];
+    EN_cardError_t returnOfFunction;
 
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
@@ -195,9 +221,9 @@ void getTransactionAmountTest(void)
     {
         returnOfFunction = getTransactionAmount(&testTerminalData);
 
-        printf("Enter expected result: "); 
+        printf("Enter expected result: ");
         fgets(expectedCase, sizeof(expectedCase), stdin);
-        
+
 
         switch (returnOfFunction)
         {
