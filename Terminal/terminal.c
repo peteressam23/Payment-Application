@@ -4,7 +4,7 @@
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
-    /*Nadeen*/
+
     time_t currentTime;
     struct tm *timeInfo;
     uint8_t inputLen;
@@ -15,11 +15,15 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
     //Error state with initial state as TERMINAL_OK.
     EN_terminalError_t errorStateTransactionDate = TERMINAL_OK;
 
-    //Save the system date in dateString Variable.
+    /*//Save the system date in dateString Variable.
     time(&currentTime);
     localtime_s(&timeInfo, &currentTime);
     strftime(dateString, sizeof(dateString), "%d/%m/%Y", &timeInfo);
-
+    */
+   //Save the system date in dateString Variable.
+    time(&currentTime);
+    timeInfo = localtime(&currentTime);
+    strftime(dateString, sizeof(dateString), "%d/%m/%Y", timeInfo);
 
     //Get the transaction date from user
      printf("Enter the transaction date in a this format , e.g (DD/MM/YYYY) : ");
@@ -55,16 +59,17 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
      //Check error state to return the correct error
      if (errorStateTransactionDate == WRONG_DATE )
      {
-         printf("Wrong transaction date - Use system date ");
+         //printf("Wrong transaction date - Use system date ");
          strcpy_s(termData->transactionDate, sizeof(termData->transactionDate) ,dateString);
-         return errorStateTransactionDate;
-
+         
      }
      else if (errorStateTransactionDate == TERMINAL_OK )
      {
          strcpy_s(termData->transactionDate, sizeof(termData->transactionDate), inputFromUser);
-	     return TERMINAL_OK;
+	     
      }
+     return errorStateTransactionDate;
+
 
 }
 
