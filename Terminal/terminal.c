@@ -258,14 +258,23 @@ void setMaxAmountTest(void)
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
+
+
     for (iterate = 0; iterate < 5; iterate++)
     {
-        printf("Enter transaction max amount: ");
-        scanf_s("%f", &maxAmountTest);
-        returnOfFunction = setMaxAmount(&testTerminalData , maxAmountTest);
+
+
 
         printf("Enter expected result: ");
         fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        printf("Enter transaction max amount: ");
+        scanf_s("%f", &maxAmountTest);
+
+
+        returnOfFunction = setMaxAmount(&testTerminalData , 1000);
+
+
 
 
         switch (returnOfFunction)
@@ -280,8 +289,18 @@ void setMaxAmountTest(void)
             strcpy_s(result, 30, "undefined Error");
             break;
         }
-            printf("Tester Name :%sFunction Name:setMaxAmount \nTest case %d:\nInput Data:%f\nExpected result : %sActual result: %s\n-----------------\n",
-                testerName, iterate, maxAmountTest , expectedCase , result);
+           // printf("Tester Name :%sFunction Name:setMaxAmount \nTest case %d:\nInput Data:%f\nExpected result : %sActual result: %s\n-----------------\n",
+              //  testerName, iterate+1, maxAmountTest , expectedCase , result);
+
+
+            printf("Tester Name : %s\n", testerName);
+            printf("Function Name : setMaxAmount\n");
+            printf("Test Case %d:\n", iterate + 1);
+           printf("Input Data : %f\n", maxAmountTest);
+            printf("Expected Resullt : %s\n", expectedCase);
+            printf("Actual Result : %s\n", result);
+            printf("___________________\n");
+
     }
 
 

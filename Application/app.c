@@ -25,7 +25,7 @@ void main(void)
    
    */
  //   getTransactionAmountTest();
-    getTransactionAmountTest();
+   setMaxAmountTest();
    
    
     
