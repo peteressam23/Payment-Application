@@ -2,8 +2,6 @@
 
 // Function Implementations 
 
-
-
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
 
@@ -71,6 +69,8 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 
 }
 
+/********************************************************************************************************************************/
+
 EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *termData)
 {
     /*Please Write Comments 80% overall*/
@@ -120,6 +120,7 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
     return errorStateTransactionAmount;
 }
 
+/********************************************************************************************************************************/
 
 
 EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
@@ -134,8 +135,7 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
 
 }
 
-
-
+/********************************************************************************************************************************/
 
 
 EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
@@ -159,6 +159,7 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
     return errorStateMaxAmount;
 }
 
+/********************************************************************************************************************************/
 
 EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 {
@@ -167,6 +168,8 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 }
 
 
+/********************************************************************************************************************************/
+
 //Test Functions for terminal
 void getTransactionDateTest(void)
 {
@@ -174,12 +177,18 @@ void getTransactionDateTest(void)
 
 }
 
+/********************************************************************************************************************************/
+
 void isCardExpriedTest(void)
 {
     /*Please Write Comments 80% overall*/
 
 
 }
+
+
+/********************************************************************************************************************************/
+
 
 
 void getTransactionAmountTest(void)
@@ -223,12 +232,16 @@ void getTransactionAmountTest(void)
 }
 
 
+/********************************************************************************************************************************/
+
 
 void isBelowMaxAmountTest(void)
 {
 
     /*Please Write Comments 80% overall*/
 }
+
+/********************************************************************************************************************************/
 
 void setMaxAmountTest(void)
 {
@@ -247,8 +260,13 @@ void setMaxAmountTest(void)
 
 }
 
+/********************************************************************************************************************************/
+
 void isValidCardPANTest(void)
 {
     /*Please Write Comments 80% overall*/
 
 }
+
+
+/********************************************************************************************************************************/
