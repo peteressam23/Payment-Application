@@ -1,10 +1,10 @@
 #include "terminal.h"
 
-// Function Implementations 
+// Function Implementations
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
-
+    /*Nadeen*/
     time_t currentTime;
     struct tm *timeInfo;
     uint8_t inputLen;
@@ -56,7 +56,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
      if (errorStateTransactionDate == WRONG_DATE )
      {
          printf("Wrong transaction date - Use system date ");
-         strcpy_s(termData->transactionDate, sizeof(termData->transactionDate) ,asctime(&timeInfo));
+         strcpy_s(termData->transactionDate, sizeof(termData->transactionDate) ,dateString);
          return errorStateTransactionDate;
 
      }
@@ -104,15 +104,15 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
     }
     /*
     The &storeFirstInvalidChar argument is used to store the address of the first invalid character
-    encountered during the conversion. After the conversion, 
+    encountered during the conversion. After the conversion,
     storeFirstInvalidChar will point to the first character
-    that couldn't be converted to a float. 
+    that couldn't be converted to a float.
     This can be useful if you need to check for errors
     or process any remaining characters in the input string that were not converted.
     */
     termData->transAmount = strtof(inputFromUser , & storeFirstInvalidChar);
-   
-    if (termData->transAmount <= 0) 
+
+    if (termData->transAmount <= 0)
     {
         errorStateTransactionAmount =  INVALID_AMOUNT;
     }
@@ -164,7 +164,7 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
 EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 {
     /*Please Write Comments 80% overall*/
-    
+
 }
 
 
@@ -173,7 +173,6 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData)// Optional
 //Test Functions for terminal
 void getTransactionDateTest(void)
 {
-    /*Please Write Comments 80% overall*/
 
 }
 
