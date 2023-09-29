@@ -2,69 +2,10 @@
 
 // Function Implementations
 
+
 EN_terminalError_t getTransactionDate(ST_terminalData_t* termData)
-{ //Transaction date format -> 10 digits  (29/09/2023).
-    /*Nadeen*/
-    time_t currentTime;
-    struct tm* timeInfo;
-    uint8_t inputLen;
-    uint8_t iterate = 0;
-    uint8_t dateString[11];  // "DD/MM/YYYY" plus null terminator.
-    *inputFromUser = ' ';
+{ 
 
-    //Error state with initial state as TERMINAL_OK.
-    EN_terminalError_t errorStateTransactionDate = TERMINAL_OK;
-
-    //Save the system date in dateString Variable.
-    time(&currentTime);
-    localtime_s(&timeInfo, &currentTime);
-    strftime(dateString, sizeof(dateString), "%d/%m/%Y", &timeInfo);
-
-
-    //Get the transaction date from user
-    printf("Enter the transaction date in a this format , e.g (DD/MM/YYYY) : ");
-    fgets(inputFromUser, sizeof(inputFromUser), stdin);
-    inputLen = strlen(inputFromUser);
-
-    //Remove the newline from InputExp to calculate the length.
-    if (inputFromUser[inputLen - 1] == '\n')
-    {
-        inputFromUser[inputLen - 1] = 0;
-    }
-
-    //Checking the length of inputFromUser.
-    if (strlen(inputFromUser) != 10 || inputFromUser == NULL)
-    {
-        errorStateTransactionDate = WRONG_DATE;
-    }
-
-    //Checking the format.
-    for (iterate; iterate < strlen(inputFromUser); iterate++)
-    {
-        // iterate = 2 or 5 that the '/'
-        if ((isdigit(inputFromUser[iterate])) == 0 && iterate != 2 && iterate != 5)
-        {
-            errorStateTransactionDate = WRONG_DATE;
-        }
-        if ((iterate == 2 || iterate == 5) && inputFromUser[iterate] != 47)
-        {
-            errorStateTransactionDate = WRONG_DATE;
-        }
-    }
-
-    //Check error state to return the correct error
-    if (errorStateTransactionDate == WRONG_DATE)
-    {
-        printf("Wrong transaction date - Use system date ");
-        strcpy_s(termData->transactionDate, sizeof(termData->transactionDate), dateString);
-        return errorStateTransactionDate;
-
-    }
-    else if (errorStateTransactionDate == TERMINAL_OK)
-    {
-        strcpy_s(termData->transactionDate, sizeof(termData->transactionDate), inputFromUser);
-        return TERMINAL_OK;
-    }
 
 }
 
@@ -278,65 +219,6 @@ void isBelowMaxAmountTest(void)
 }
 
 /********************************************************************************************************************************/
-/*
-
-void setMaxAmountTest(void)
-{
-    
-
-    ST_terminalData_t testTerminalData;
-    uint8_t testerName[50];
-    uint8_t expectedCase[50];
-    uint8_t iterate = 0;
-    uint8_t result[30];
-    EN_cardError_t returnOfFunction;
-    float maxAmountTest;
-
-    printf("Enter your name: ");
-    fgets(testerName, sizeof(testerName), stdin);
-
-
-
-    for (iterate = 0; iterate < 5; iterate++)
-    {
-
-        printf("Enter expected result: ");
-        fgets(expectedCase, sizeof(expectedCase), stdin);
-
-        printf("Enter transaction max amount: ");
-        scanf_s("%f", &maxAmountTest);
-
-        returnOfFunction = setMaxAmount(&testTerminalData , 1000);
-
-        switch (returnOfFunction)
-        {
-        case 0:
-            strcpy_s(result, 30, "TERMINAL_OK");
-            break;
-        case 6:
-            strcpy_s(result, 30, "INVALID_MAX_AMOUNT");
-            break;
-        default:
-            strcpy_s(result, 30, "undefined Error");
-            break;
-        }
-           // printf("Tester Name :%sFunction Name:setMaxAmount \nTest case %d:\nInput Data:%f\nExpected result : %sActual result: %s\n-----------------\n",
-              //  testerName, iterate+1, maxAmountTest , expectedCase , result);
-
-
-            printf("Tester Name : %s\n", testerName);
-            printf("Function Name : setMaxAmount\n");
-            printf("Test Case %d:\n", iterate + 1);
-           printf("Input Data : %f\n", maxAmountTest);
-            printf("Expected Resullt : %s\n", expectedCase);
-            printf("Actual Result : %s\n", result);
-            printf("___________________\n");
-
-    }
-
-
-}
-*/
 
 void setMaxAmountTest(void) {
     int i = 0;
@@ -350,20 +232,13 @@ void setMaxAmountTest(void) {
     printf("Enter your name:");
     fgets(testerName, sizeof(testerName), stdin);
 
-
-
     for ( iterate = 1; iterate < 6; iterate++) {
 
         printf("Enter transaction max amount: ");
         scanf_s("%f", &maxAmountTest);
 
-        printf("Enter expected result: ");
-        for (i = 0; expectedCase[i]; i++)
-        {
-            gets(expectedCase[i]);
-            printf("Hi \n");
-        }
-        printf("Hi");
+        printf("Enter expected result:");
+        fgets(expectedCase , sizeof(expectedCase), stdin);
 
         switch (setMaxAmount(&testTerminalData , maxAmountTest)) {
         case 0:

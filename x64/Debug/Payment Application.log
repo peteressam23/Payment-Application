@@ -1,11 +1,2 @@
-﻿  terminal.c
-D:\Payment Application\Payment Application\Terminal\terminal.c(20,17): warning C4047: 'function': 'tm *const ' differs in levels of indirection from 'tm **'
-D:\Payment Application\Payment Application\Terminal\terminal.c(20,17): warning C4024: 'localtime_s': different types for formal and actual parameter 1
-D:\Payment Application\Payment Application\Terminal\terminal.c(21,58): warning C4047: 'function': 'const tm *' differs in levels of indirection from 'tm **'
-D:\Payment Application\Payment Application\Terminal\terminal.c(21,58): warning C4024: 'strftime': different types for formal and actual parameter 4
-D:\Payment Application\Payment Application\Terminal\terminal.c(27,16): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
-D:\Payment Application\Payment Application\Terminal\terminal.c(363,13): warning C4013: 'gets' undefined; assuming extern returning int
-D:\Payment Application\Payment Application\Terminal\terminal.c(78): warning C4716: 'isCardExpired': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(69): warning C4715: 'getTransactionDate': not all control paths return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(169): warning C4716: 'isValidCardPAN': must return a value
+﻿  app.c
   Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe

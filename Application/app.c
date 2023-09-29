@@ -4,29 +4,37 @@
 void main(void)
 {
     /*Card Section*/
-    /*Test Card Holder Name*/
-   //getCardHolderNameTest();
+    /*
+    Test Card Holder Name
+     getCardHolderNameTest();
+    */
+   
 
-    /*Test Card Expire Date*/
-    //getCardExpiryDateTest();
+    /*
+    Test Card Expire Date
+    getCardExpiryDateTest();
+    */
+    
 
-    /*Test Card PAN*/
-    // getCardPANTest();
+    /*
+     Test Card PAN
+     getCardPANTest();
+     */
 
     /*Terminal Section*/
     
-  /*
+    /*
     ST_terminalData_t testAmount;
     EN_terminalError_t errorStateTransactionAmount;
 
-    errorStateTransactionAmount = getTransactionAmount(&testAmount);
+    errorStateTransactionAmount = getTransactionDate(&testAmount);
     printf("%d", errorStateTransactionAmount);
-    
-   */
+    */
    
- //   getTransactionAmountTest();
-   setMaxAmountTest();
-   // getTransactionDateTest();
+   
+   //getTransactionAmountTest();
+  // setMaxAmountTest();
+ // getTransactionDateTest();
    
    
     
