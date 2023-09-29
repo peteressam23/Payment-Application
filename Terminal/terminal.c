@@ -2,11 +2,7 @@
 
 // Function Implementations 
 
-<<<<<<< HEAD
-EN_terminalError_t getTransactionDate(ST_terminalData_t* termData)
-{
-    /*Please Write Comments 80% overall*/
-=======
+
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
@@ -72,7 +68,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
          strcpy_s(termData->transactionDate, sizeof(termData->transactionDate), inputFromUser);
 	     return TERMINAL_OK;
      }
->>>>>>> 59ac874218b6ee0824f9a4e0ac1ad2a4bdf546c6
+
 }
 
 EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *termData)
@@ -139,10 +135,9 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
 }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 59ac874218b6ee0824f9a4e0ac1ad2a4bdf546c6
+
+
 EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
 {
     /*This is The Error State To Return In The End Of Function*/
