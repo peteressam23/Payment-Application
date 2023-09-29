@@ -232,13 +232,15 @@ void setMaxAmountTest(void) {
     printf("Enter your name:");
     fgets(testerName, sizeof(testerName), stdin);
 
+    printf("Enter expected result:");
+    fgets(expectedCase, sizeof(expectedCase), stdin);
+
     for ( iterate = 1; iterate < 6; iterate++) {
 
         printf("Enter transaction max amount: ");
         scanf_s("%f", &maxAmountTest);
 
-        printf("Enter expected result:");
-        fgets(expectedCase , sizeof(expectedCase), stdin);
+
 
         switch (setMaxAmount(&testTerminalData , maxAmountTest)) {
         case 0:
