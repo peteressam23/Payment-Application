@@ -29,7 +29,6 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
     {
         Error_state = WRONG_NAME;
     }
- 
     //Check if the length is in the acceptable range
     if (strlen(inputFromUser) >= 20 && (strlen(inputFromUser) <= 24))
     {
@@ -44,7 +43,7 @@ EN_cardError_t getCardHolderName(ST_cardData_t *cardData)
         }
     }
     if (Error_state == CARD_OK)
-    {
+    {//To store the input only if it is right
         strcpy_s(cardData->cardHolderName, sizeof(inputFromUser), inputFromUser);
     }
     return Error_state;
