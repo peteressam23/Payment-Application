@@ -82,8 +82,23 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData)
 
 void listSavedTransactions(void)
 {
-    /*Please Write Comments 80% overall*/
+    uint8_t iterate = 0;
+    for (iterate = 0; iterate < 255; iterate++)
+    {
+        printf("###################################\n");
+        printf("Transaction Sequence Number: %d\n", transactionDB_t[iterate].transactionSequenceNumber);
+        printf("Transaction Date: %s\n", &transactionDB_t[iterate].terminalData.transactionDate);
+        printf("Transaction Amount: %f\n", transactionDB_t[iterate].terminalData.transAmount);
+        printf("Transaction State: %s\n", transactionDB_t[iterate].transState);
+        printf("Terminal Max Amount: %f\n", transactionDB_t[iterate].terminalData.maxTransAmount);
+        printf("Cardholder Name: %s\n", transactionDB_t[iterate].cardHolderData.cardHolderName);
+        printf("PAN: %s\n", transactionDB_t[iterate].cardHolderData.primaryAccountNumber);
+        printf("Card Expiration Date: %s\n", transactionDB_t[iterate].cardHolderData.cardExpirationDate);
+        printf("###################################\n");
+    }
+
 }
+
 
 /**********************************************************************************************************************/
 

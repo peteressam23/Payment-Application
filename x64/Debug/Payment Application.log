@@ -1,5 +1,1 @@
-﻿  server.c
-D:\Payment Application\Payment Application\Server\server.c(25,32): warning C4047: '==': 'int' differs in levels of indirection from 'char [8]'
-D:\Payment Application\Payment Application\Server\server.c(8): warning C4716: 'recieveTransactionData': must return a value
-D:\Payment Application\Payment Application\Server\server.c(15): warning C4716: 'isValidAccount': must return a value
-  Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
+﻿  Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
