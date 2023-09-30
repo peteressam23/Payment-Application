@@ -12,7 +12,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
     {
         errorStateRecieveTrans = FRAUD_CARD;
     }
-    else if(isAmountAvailable (transData->terminalData , &referenceInDB) == 4 )
+    else if(isAmountAvailable (&transData->terminalData , &referenceInDB) == 4 )
     {
         errorStateRecieveTrans = DECLINED_INSUFFECIENT_FUND ;
     }
@@ -35,9 +35,9 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
     for(iterate ; iterate < 255 ; iterate++)
     {
         //search by PAN in accountsDB in the database of the server.
-        if(strcmp( accountsDB[i].primaryAccountNumber , referenceInDB.primaryAccountNumber ) == 0)
+        if(strcmp( accountsDB[iterate].primaryAccountNumber, referenceInDB.primaryAccountNumber) == 0)
         {
-            accountsDB[i].balance -= transData->terminalData.transAmount;
+            accountsDB[iterate].balance -= transData->terminalData.transAmount;
             break;
         }
     }
@@ -49,6 +49,8 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
 }
 
 /**********************************************************************************************************************/
+
+
 
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence)
 {
@@ -74,21 +76,24 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accoun
             else
             {
                 errorStateValidAccount = ACCOUNT_NOT_FOUND;
-                *accountRefrence = NULL;
+                accountRefrence = NULL;
             }
 
         }
         return errorStateValidAccount;
 }
 
+
 /**********************************************************************************************************************/
+
+
 
 EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
 {
-    /*Make Variable To return the errorState*/
+    //Make Variable To return the errorState
     EN_serverError_t errorStateBlockAccount;
 
-    /*Check on The State Of Account*/
+    //Check on The State Of Account
     if (accountRefrence->state == "RUNNING")
     {
         errorStateBlockAccount = SERVER_OK;
@@ -99,15 +104,16 @@ EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
     }
     return errorStateBlockAccount;
 }
+
 /**********************************************************************************************************************/
 
 
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData, ST_accountsDB_t *accountRefrence)
 {
-    /*Make Variable To return the errorState*/
+    //Make Variable To return the errorState
     EN_serverError_t errorStateAmountAvilavle;
 
-    /*Check on The Balance Of Account*/
+    //Check on The Balance Of Account
     if (termData->transAmount > accountRefrence->balance)
     {
         errorStateAmountAvilavle = LOW_BALANCE;
@@ -118,8 +124,8 @@ EN_serverError_t isAmountAvailable(ST_terminalData_t *termData, ST_accountsDB_t 
     }
     return errorStateAmountAvilavle;
 }
-/**********************************************************************************************************************/
 
+/**********************************************************************************************************************/
 
 EN_serverError_t saveTransaction(ST_transaction_t *transData)
 {
@@ -132,6 +138,18 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData)
         {
             transactionDB_t[iterate].cardHolderData = transData->cardHolderData;
             transactionDB_t[iterate].terminalData = transData->terminalData;
+
+            if (iterate == 0) 
+            { 
+                transactionDB_t[iterate].transactionSequenceNumber = 1000; 
+            }
+
+            if (iterate > 0) 
+            {
+                transactionDB_t[iterate].transactionSequenceNumber = transactionDB_t[iterate - 1].transactionSequenceNumber + 1;
+            }
+
+            transactionDB_t[iterate].transState = transData->transState;
             listSavedTransactions();
             errorStateSaveTrans = SERVER_OK;
         }
@@ -143,6 +161,7 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData)
     return errorStateSaveTrans;
 }
 
+
 /**********************************************************************************************************************/
 
 
@@ -150,26 +169,44 @@ EN_serverError_t saveTransaction(ST_transaction_t *transData)
 void listSavedTransactions(void)
 {
     uint8_t iterate = 0;
+    EN_serverError_t errorState ;
+
     for (iterate = 0; iterate < 255; iterate++)
     {
+
+        if (transactionDB_t[iterate].transactionSequenceNumber == 0)
+        {
+            break;
+        }
         printf("###################################\n");
+
         printf("Transaction Sequence Number: %d\n", transactionDB_t[iterate].transactionSequenceNumber);
+
         printf("Transaction Date: %s\n", &transactionDB_t[iterate].terminalData.transactionDate);
+
         printf("Transaction Amount: %f\n", transactionDB_t[iterate].terminalData.transAmount);
-        printf("Transaction State: %s\n", transactionDB_t[iterate].transState);
+
+        printf("Transaction State: %s\n", serverErrorStrings[transactionDB_t[iterate].transState]);
+
         printf("Terminal Max Amount: %f\n", transactionDB_t[iterate].terminalData.maxTransAmount);
+
         printf("Cardholder Name: %s\n", transactionDB_t[iterate].cardHolderData.cardHolderName);
+
         printf("PAN: %s\n", transactionDB_t[iterate].cardHolderData.primaryAccountNumber);
+
         printf("Card Expiration Date: %s\n", transactionDB_t[iterate].cardHolderData.cardExpirationDate);
+
         printf("###################################\n");
     }
 
 }
 
 
+
 /**********************************************************************************************************************/
 
 //Test Functions for terminal
+
 void recieveTransactionDataTest(void)
 {
     ST_transaction_t testTransaction ; 
@@ -236,7 +273,37 @@ void recieveTransactionDataTest(void)
 void isValidAccountTest(void)
 {
 
-    /*Please Write Comments 80% overall*/
+    uint8_t iterate = 0;
+    uint8_t testerName[30];
+    uint8_t expectedCase[30];
+    ST_cardData_t testCardData;
+    ST_accountsDB_t testAccountReference;
+    EN_serverError_t returnOfFunction;
+    uint8_t result[30];
+
+
+    printf("Tester Name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    for (iterate = 1; iterate < 3; iterate++)
+    {
+        returnOfFunction = isValidAccount(&testCardData, &testAccountReference);
+        printf("Expected Result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+        switch (returnOfFunction) {
+        case 0:
+            strcpy_s(result, 30, "SERVER_OK");
+            break;
+        case 3:
+            strcpy_s(result, 30, "ACCOUNT_NOT_FOUND");
+            break;
+        default:
+            strcpy_s(result, 30, "UNDEFINED");
+            printf("\n\nTester Name :%sFunction Name: isValidAccount \nTest case %d:\nInput Data:%s \nExpected result:%sActual result: %s\n-----------------------\n"
+                , testerName, iterate, inputFromUser, expectedCase, result);
+        }
+    }
+
 }
 
 void isBlockedAccountTest(void)
@@ -249,6 +316,7 @@ void isBlockedAccountTest(void)
     uint8_t iterate = 1;
     EN_serverError_t returnOfFunction;
 
+
     
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
@@ -256,7 +324,7 @@ void isBlockedAccountTest(void)
     for(iterate ; iterate <4 ; iterate++)
     {
         //call getTransactionAmount function to check transaction amount.
-        returnOfFunction = getTransactionAmount(&testTerminalData);
+        returnOfFunction = getTransactionAmount(&testTransaction);
 
         printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
@@ -283,6 +351,9 @@ void isBlockedAccountTest(void)
             , testerName, iterate, inputFromUser, expectedCase, result);
 
 }
+
+
+
 
 void isAmountAvailableTest(void)
 {
@@ -326,14 +397,71 @@ void isAmountAvailableTest(void)
 
 }
 
-void saveTransactionTest(void)
-{
-    /*Please Write Comments 80% overall*/
 
+
+void saveTransactionTest(void) {
+
+    ST_transaction_t testTransaction;
+    uint8_t testerName[30];
+    uint8_t expectedCase[30];
+    uint8_t result[30];
+    uint8_t iterate_1 = 0;
+    uint8_t iterate_2 = 0;
+    EN_serverError_t returnOfFunction;
+
+
+    printf("Enter your name:\n");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    for (iterate_1 = 0; iterate_1 < 255; iterate_1++)
+    {
+        transactionDB_t[iterate_1].transactionSequenceNumber = 5;
+    }
+
+    for (iterate_2 = 0; iterate_2 < 3; iterate_2++)
+    {
+        printf("Enter expected result:\n");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        returnOfFunction = saveTransaction(&testTransaction);
+
+        getCardExpiryDate(&testTransaction.cardHolderData);
+
+        getCardHolderName(&testTransaction.cardHolderData);
+
+        getCardPAN(&testTransaction.cardHolderData);
+
+        setMaxAmount(&testTransaction.terminalData, 20000.0);
+
+        getTransactionDate(&testTransaction.terminalData);
+
+        getTransactionAmount(&testTransaction.terminalData);
+
+        testTransaction.transState = iterate_2;
+
+        switch (returnOfFunction)
+        {
+        case 0:
+            strcpy_s(result, 30, "SERVER_OK");
+            break;
+        case 1:
+            strcpy_s(result, 30, "INTERNAL_SERVER_ERROR");
+            break;
+        default:
+            printf("undefined Error");
+            break;
+        }
+        printf("Tester Name :%sFunction Name: saveTransaction \nTest case %d:\nExpected result : %sActual result: %s\n-----------------\n"
+            , testerName,iterate_2+ 1, expectedCase, result);
+
+
+    }
 }
 
+/*
 void listSavedTransactionsTest(void)
 {
 
-    /*Please Write Comments 80% overall*/
+    //Please Write Comments 80% overall
 }
+*/
