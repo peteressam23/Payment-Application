@@ -8,3 +8,22 @@
 .vs/Payment-Application/v17/Browse.VC.db-shm
 .vs/slnx.sqlite
 .vs/Payment-Application/v17/ipch/AutoPCH/a5bfc0b02a670a14/CARD.ipch
+*.db
+.vs/Payment Application/v17/.suo
+*.db-shm
+*.db-wal
+*.opendb
+*.ipch
+*.o
+*.cbp
+*.layout
+x64/Debug/Payment .8ba73c44.tlog/unsuccessfulbuild
+*.obj
+*.tlog
+*.exe
+*.recipe
+*.iobj
+*.ipdb
+*.log
+*.pdb
+*.txt
