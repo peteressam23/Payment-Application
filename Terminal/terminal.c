@@ -289,13 +289,14 @@ void isBelowMaxAmountTest(void)
 	
 	for ( iterate ; iterate < 5; iterate++) 
 	{
-	    returnOfFunction = isBelowMaxAmount(&testTerminalData);
+	    returnOfFunction = getTransactionAmountTest(&testTerminalData);
 		
 		printf("Enter expected result:");
 		fgets(expectedCase, sizeof(expectedCase), stdin);
-		
-	
-        switch (returnOfFunction)
+
+        if(returnOfFunction == TERMINAL_OK)
+        {
+            switch (isBelowMaxAmount(&testTerminalData))
         {
         case 0:
             strcpy_s(result, 30, "TERMINAL_OK");
@@ -308,6 +309,7 @@ void isBelowMaxAmountTest(void)
             break;
         }
 
+        }
         printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
             , testerName, iterate + 1, inputFromUser, expectedCase, result);	
 	}
