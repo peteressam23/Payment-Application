@@ -1,11 +1,7 @@
 ﻿  server.c
-D:\Payment Application\Payment Application\Server\server.h(45,1): error C2371: 'transactionDB_t': redefinition; different basic types
-D:\Payment Application\Payment Application\Server\server.h(42,18): message : see declaration of 'transactionDB_t'
-D:\Payment Application\Payment Application\Server\server.h(50,1): error C2371: 'accountsDB': redefinition; different basic types
-D:\Payment Application\Payment Application\Server\server.h(39,17): message : see declaration of 'accountsDB'
-  terminal.c
-D:\Payment Application\Payment Application\Terminal\terminal.c(29,17): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
-D:\Payment Application\Payment Application\Terminal\terminal.c(317,50): warning C4087: 'getTransactionAmountTest': declared with 'void' parameter list
-D:\Payment Application\Payment Application\Terminal\terminal.c(317,23): error C2440: '=': cannot convert from 'void' to 'EN_cardError_t'
-D:\Payment Application\Payment Application\Terminal\terminal.c(317,23): error C2120: 'void' illegal with all types
-  Generating Code...
+D:\Payment Application\Payment Application\Server\server.c(28): warning C4716: 'recieveTransactionData': must return a value
+D:\Payment Application\Payment Application\Server\server.c(33): warning C4716: 'isValidAccount': must return a value
+D:\Payment Application\Payment Application\Server\server.c(48): warning C4716: 'saveTransaction': must return a value
+D:\Payment Application\Payment Application\Server\server.c(38): warning C4716: 'isBlockedAccount': must return a value
+D:\Payment Application\Payment Application\Server\server.c(43): warning C4716: 'isAmountAvailable': must return a value
+  Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
