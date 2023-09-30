@@ -14,7 +14,19 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accoun
 
 EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
 {
-    /*Please Write Comments 80% overall*/
+    /*Make Variable To return the errorState*/
+    EN_serverError_t errorStateBlockAccount;
+
+    /*Check on The State Of Account*/
+    if (accountRefrence->state == "RUNNING")
+    {
+        errorStateBlockAccount = SERVER_OK;
+    }
+    else
+    {
+        errorStateBlockAccount = BLOCKED_ACCOUNT;
+    }
+    return errorStateBlockAccount;
 }
 
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData, ST_accountsDB_t *accountRefrence)
