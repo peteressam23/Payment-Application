@@ -52,7 +52,35 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
 
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence)
 {
-    /*Please Write Comments 80% overall*/
+    EN_serverError_t isValidAccount(ST_cardData_t * cardData, ST_accountsDB_t * accountRefrence)
+    {
+        //variable to return error state
+        EN_serverError_t  errorStateValidAccount = SERVER_OK;
+        //Variable to store string compare result
+        uint8_t cmpPAN = 0;
+        uint8_t iterate = 0;
+        //for loop to compare the PAN with the PAN numbers stored in DataBase
+        for (iterate = 0; accountsDB != 0; iterate++)
+        {
+            //Compare two strings together
+            cmpPAN = strcmp(cardData->primaryAccountNumber, accountsDB[iterate].primaryAccountNumber);
+
+            if (cmpPAN == 0)
+            {
+                //if the PAN is found in the DataBase return account refrence in the database
+                *accountRefrence = accountsDB[iterate];
+                errorStateValidAccount = SERVER_OK;
+                break;
+            }
+            else
+            {
+                errorStateValidAccount = ACCOUNT_NOT_FOUND;
+                *accountRefrence = NULL;
+            }
+
+        }
+        return errorStateValidAccount;
+    }
 }
 
 /**********************************************************************************************************************/
