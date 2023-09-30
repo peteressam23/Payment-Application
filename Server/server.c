@@ -231,17 +231,6 @@ void recieveTransactionDataTest(void)
           printf("\n\nTester Name :%sFunction Name: recieveTransactionData \nTest case %d:\nInput Data: %s\nExpected result:%sActual result: %s\n--------------------------\n"
             , testerName, iterate, inputFromUser, expectedCase, result);
     }
-
-    
-    
-
-
-
-
-
-
-
-
 }
 
 void isValidAccountTest(void)
