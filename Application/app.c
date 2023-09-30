@@ -23,22 +23,23 @@ void main(void)
 
     /*Terminal Section*/
     
-    /*
     
+    /*
     ST_terminalData_t testAmount;
     EN_terminalError_t errorStateTransactionAmount;
+    testAmount.transAmount = 1000;
+    testAmount.maxTransAmount = 500;
 
-    errorStateTransactionAmount = getTransactionDate(&testAmount);
+    errorStateTransactionAmount = isBelowMaxAmount(&testAmount);
     printf("%d", errorStateTransactionAmount);
-    */
-   
+    
+   */
    
    //getTransactionAmountTest();
-  setMaxAmountTest();
- // getTransactionDateTest();
+ // setMaxAmountTest();
+ //getTransactionDateTest();
    
-   
-    
+    isBelowMaxAmountTest();
 
 
   

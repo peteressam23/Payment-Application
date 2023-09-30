@@ -1,5 +1,2 @@
-﻿  terminal.c
-D:\Payment Application\Payment Application\Terminal\terminal.c(18): warning C4716: 'isCardExpired': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(9): warning C4716: 'getTransactionDate': must return a value
-D:\Payment Application\Payment Application\Terminal\terminal.c(109): warning C4716: 'isValidCardPAN': must return a value
+﻿  app.c
   Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
