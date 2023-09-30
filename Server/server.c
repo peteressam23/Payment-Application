@@ -172,7 +172,75 @@ void listSavedTransactions(void)
 //Test Functions for terminal
 void recieveTransactionDataTest(void)
 {
-    /*Please Write Comments 80% overall*/
+    ST_transaction_t testTransaction ; 
+    uint8_t testerName[30];
+    uint8_t expectedCase[30];
+    uint8_t result[30];
+    uint8_t iterate = 1;
+    EN_serverError_t returnOfFunction;
+
+    
+    printf("Enter your name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    for(iterate ; iterate <6 ; iterate++)
+    {
+        //call recieveTransactionData function
+        returnOfFunction = recieveTransactionData(&testTransaction);
+        
+        //Call all functions of card to test the transacrion
+        getCardHolderName(&testTransaction.cardHolderData);
+        getCardExpiryDate(&testTransaction.cardHolderData);
+        getCardPAN(&testTransaction.cardHolderData);
+
+        //call all functions needed of terminal to test 
+        getTransactionDate(&testTransaction.terminalData);
+        getTransactionAmount(&testTransaction.terminalData);
+        setMaxAmount(&testTransaction.terminalData,50000);
+     
+        printf("Expected Result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        switch (returnOfFunction)
+        {
+        case 0:
+            strcpy_s(result, 30, "APPROVED");
+            break;
+        
+        case 1:
+            strcpy_s(result, 30, "DECLINED_INSUFFECIENT_FUND");
+            break;
+
+        case 2:
+            strcpy_s(result, 30, "DECLINED_STOLEN_CARD");
+            break;
+
+        case 3:
+            strcpy_s(result, 30, "FRAUD_CARD");
+            break;
+
+        case 4:
+            strcpy_s(result, 30, "INTERNAL_SERVER_ERROR");
+            break;
+        
+        default:
+            strcpy_s(result, 30, "UNDEFINED");
+            break;
+        }
+
+          printf("\n\nTester Name :%sFunction Name: recieveTransactionData \nTest case %d:\nInput Data: %s\nExpected result:%sActual result: %s\n--------------------------\n"
+            , testerName, iterate, inputFromUser, expectedCase, result);
+    }
+
+    
+    
+
+
+
+
+
+
+
 
 }
 
