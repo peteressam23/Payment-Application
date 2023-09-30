@@ -241,7 +241,44 @@ void isValidAccountTest(void)
 
 void isBlockedAccountTest(void)
 {
-    /*Please Write Comments 80% overall*/
+    ST_transaction_t testTransaction ;
+    ST_accountsDB_t testAccountRefrence; 
+    uint8_t testerName[30];
+    uint8_t expectedCase[30];
+    uint8_t result[30];
+    uint8_t iterate = 1;
+    EN_serverError_t returnOfFunction;
+
+    
+    printf("Enter your name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    for(iterate ; iterate <4 ; iterate++)
+    {
+        //call recieveTransactionData function
+        returnOfFunction = isBlockedAccount(&testTransaction , &testAccountRefrence);
+
+        printf("Expected Result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        switch (returnOfFunction)
+        {
+        case 0:
+            strcpy_s(result, 30, "SERVER_OK");
+            break;
+
+        case 5:
+            strcpy_s(result, 30, "BLOCKED_ACCOUNT");
+            break;
+
+        default:
+            strcpy_s(result, 30, "UNDEFINED");
+            break;
+        }
+    }
+     printf("\n\nTester Name :%sFunction Name: isBlockedAccount \nTest case %d:\nInput Data: %s\nExpected result:%sActual result: %s\n--------------------------\n"
+            , testerName, iterate, inputFromUser, expectedCase, result);
+
 }
 
 void isAmountAvailableTest(void)
