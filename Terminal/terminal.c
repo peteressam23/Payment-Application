@@ -220,7 +220,7 @@ void isBelowMaxAmountTest(void)
 /********************************************************************************************************************************/
 
 void setMaxAmountTest(void) {
-    int i = 0;
+   
     ST_terminalData_t testTerminalData;
     uint8_t testerName[50];
     uint8_t expectedCase[50];
@@ -235,14 +235,14 @@ void setMaxAmountTest(void) {
     fgets(expectedCase, sizeof(expectedCase), stdin);
 
     for ( iterate = 1; iterate < 6; iterate++) {
-
+        
         printf("Enter transaction max amount: ");
         scanf_s("%f", &maxAmountTest);
-
-
-
-        switch (setMaxAmount(&testTerminalData , maxAmountTest)) {
+        
+        switch (setMaxAmount(&testTerminalData , maxAmountTest)) 
+        {
         case 0:
+
             strcpy_s(result, 30, "TERMINAL_OK-PASS");
             break;
         case 6:
