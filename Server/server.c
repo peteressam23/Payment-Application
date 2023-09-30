@@ -56,10 +56,29 @@ EN_serverError_t isAmountAvailable(ST_terminalData_t *termData, ST_accountsDB_t 
 
 EN_serverError_t saveTransaction(ST_transaction_t *transData)
 {
-    /*Please Write Comments 80% overall*/
+    uint8_t iterate = 0;
+    EN_serverError_t errorStateSaveTrans;
+
+    for (iterate = 0; iterate < 255; iterate++)
+    {
+        if (transactionDB_t[iterate].transactionSequenceNumber == 0)
+        {
+            transactionDB_t[iterate].cardHolderData = transData->cardHolderData;
+            transactionDB_t[iterate].terminalData = transData->terminalData;
+            listSavedTransactions();
+            errorStateSaveTrans = SERVER_OK;
+        }
+        else
+        {
+            errorStateSaveTrans = SAVING_FAILED;
+        }
+    }
+    return errorStateSaveTrans;
 }
 
 /**********************************************************************************************************************/
+
+
 
 void listSavedTransactions(void)
 {
