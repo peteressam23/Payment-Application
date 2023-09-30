@@ -2,9 +2,6 @@
 
 // Function Implementations
 
-
-
-
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 { //Transaction date format -> 10 digits  (29/09/2023).
 
@@ -70,6 +67,13 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 	     
      }
      return errorStateTransactionDate;
+
+
+}
+
+
+EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* termData)
+{
 
 
 }
