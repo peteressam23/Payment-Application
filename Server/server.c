@@ -185,15 +185,15 @@ void recieveTransactionDataTest(void)
 
     for(iterate ; iterate <6 ; iterate++)
     {
-        //call recieveTransactionData function
+        //call recieveTransactionData function.
         returnOfFunction = recieveTransactionData(&testTransaction);
         
-        //Call all functions of card to test the transacrion
+        //Call all functions of card to test the transacrion.
         getCardHolderName(&testTransaction.cardHolderData);
         getCardExpiryDate(&testTransaction.cardHolderData);
         getCardPAN(&testTransaction.cardHolderData);
 
-        //call all functions needed of terminal to test 
+        //call all functions needed of terminal to test.
         getTransactionDate(&testTransaction.terminalData);
         getTransactionAmount(&testTransaction.terminalData);
         setMaxAmount(&testTransaction.terminalData,50000);
@@ -255,13 +255,15 @@ void isBlockedAccountTest(void)
 
     for(iterate ; iterate <4 ; iterate++)
     {
-        //call recieveTransactionData function
-        returnOfFunction = isBlockedAccount(&testTransaction , &testAccountRefrence);
+        //call getTransactionAmount function to check transaction amount.
+        returnOfFunction = getTransactionAmount(&testTerminalData);
 
         printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
 
-        switch (returnOfFunction)
+        if(returnOfFunction == TERMINAL_OK)
+        {
+            switch (isBlockedAccount(&testTransaction , &testAccountRefrence))
         {
         case 0:
             strcpy_s(result, 30, "SERVER_OK");
@@ -275,6 +277,7 @@ void isBlockedAccountTest(void)
             strcpy_s(result, 30, "UNDEFINED");
             break;
         }
+        }
     }
      printf("\n\nTester Name :%sFunction Name: isBlockedAccount \nTest case %d:\nInput Data: %s\nExpected result:%sActual result: %s\n--------------------------\n"
             , testerName, iterate, inputFromUser, expectedCase, result);
@@ -283,7 +286,43 @@ void isBlockedAccountTest(void)
 
 void isAmountAvailableTest(void)
 {
-    /*Please Write Comments 80% overall*/
+    ST_transaction_t testTransaction ;
+    ST_accountsDB_t testAccountRefrence; 
+    uint8_t testerName[30];
+    uint8_t expectedCase[30];
+    uint8_t result[30];
+    uint8_t iterate = 1;
+    EN_serverError_t returnOfFunction;
+
+    
+    printf("Enter your name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    for(iterate ; iterate <4 ; iterate++)
+    {
+        //call recieveTransactionData function
+        returnOfFunction = isAmountAvailable(&testTransaction , &testAccountRefrence);
+
+        printf("Expected Result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        switch (returnOfFunction)
+        {
+        case 0:
+            strcpy_s(result, 30, "SERVER_OK");
+            break;
+
+        case 4:
+            strcpy_s(result, 30, "LOW_BALANCE");
+            break;
+
+        default:
+            strcpy_s(result, 30, "UNDEFINED");
+            break;
+        }
+    }
+     printf("\n\nTester Name :%sFunction Name: isAmountAvailable \nTest case %d:\nInput Data: %s\nExpected result:%sActual result: %s\n--------------------------\n"
+            , testerName, iterate, inputFromUser, expectedCase, result);
 
 }
 
