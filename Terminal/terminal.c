@@ -285,7 +285,7 @@ void isBelowMaxAmountTest(void)
 	
 	for ( iterate ; iterate < 5; iterate++) 
 	{
-	    returnOfFunction = getTransactionAmountTest(&testTerminalData);
+	    returnOfFunction = getTransactionAmount(&testTerminalData);
 		
 		printf("Enter expected result:");
 		fgets(expectedCase, sizeof(expectedCase), stdin);
