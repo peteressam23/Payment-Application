@@ -282,14 +282,14 @@ void isBelowMaxAmountTest(void)
 
 	
 	printf("Enter your name:");
-	fgets(tester_name, sizeof(tester_name), stdin);
+	fgets(testerName, sizeof(testerName), stdin);
 	
 	for ( iterate ; iterate < 5; iterate++) 
 	{
 	    returnOfFunction = isBelowMaxAmount(&testTerminalData);
 		
 		printf("Enter expected result:");
-		fgets(expected_case, sizeof(expected_case), stdin);
+		fgets(expectedCase, sizeof(expectedCase), stdin);
 		
 	
         switch (returnOfFunction)
