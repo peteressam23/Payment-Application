@@ -21,25 +21,40 @@ void main(void)
      getCardPANTest();
      */
 
+
+
     /*Terminal Section*/
-    
+    /*
+    Test Transaction Date
+     getTransactionDateTest();
+    */
+
+
+    /*
+    Test Card Expire Date
+    isCardExpriedTest();
+    */
+
+
+    /*
+     Test Transaction Amount
+     getTransactionAmountTest();
+     */
     
     /*
-    ST_terminalData_t testAmount;
-    EN_terminalError_t errorStateTransactionAmount;
-    testAmount.transAmount = 1000;
-    testAmount.maxTransAmount = 500;
+     Test Below MaxAmount
+     isBelowMaxAmountTest();
+    */
 
-    errorStateTransactionAmount = isBelowMaxAmount(&testAmount);
-    printf("%d", errorStateTransactionAmount);
+    /*
+     Test Set MAx Amount
+     setMaxAmountTest();
+    */
+
     
-   */
-   
-   //getTransactionAmountTest();
- // setMaxAmountTest();
- //getTransactionDateTest();
-   
-    isBelowMaxAmountTest();
+    /*Server Section*/
+
+
 
 
   

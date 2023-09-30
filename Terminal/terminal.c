@@ -74,8 +74,33 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
 
 EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* termData)
 {
+    EN_terminalError_t errorStateCardExpired = TERMINAL_OK;
+    uint8_t* endptr;
 
+    //convert string to long integer using strtol and casting its return to uint8_t
+    uint8_t expMonth = (uint8_t)strtol(cardData->cardExpirationDate, &endptr, 10);
+    uint8_t expYear = (uint8_t)strtol(&cardData->cardExpirationDate[3], &endptr, 10);
+    uint8_t transactionMonth = (uint8_t)strtol(&termData->transactionDate[3], &endptr, 10);
+    uint8_t transactionYear = (uint8_t)strtol(&termData->transactionDate[8], &endptr, 10);
 
+    //Check if the expiry year is larger than year of transaction date so it's not expired
+    if (expYear > transactionYear)
+    {
+        errorStateCardExpired = TERMINAL_OK;
+    }
+    if (expYear == transactionYear)
+    {
+        //If the years are the same compare the months
+        if (expMonth >= transactionMonth)
+        {
+            errorStateCardExpired = TERMINAL_OK;
+        }
+    }
+    else
+    {
+        errorStateCardExpired = EXPIRED_CARD;
+    }
+    return errorStateCardExpired;
 }
 
 
