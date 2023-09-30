@@ -326,7 +326,8 @@ void setMaxAmountTest(void) {
     printf("Enter expected result:");
     fgets(expectedCase, sizeof(expectedCase), stdin);
 
-    for ( iterate = 1; iterate < 6; iterate++) {
+    for ( iterate = 1; iterate < 6; iterate++) 
+    {
         
         printf("Enter transaction max amount: ");
         scanf_s("%f", &maxAmountTest);
