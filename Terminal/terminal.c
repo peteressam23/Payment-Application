@@ -228,11 +228,11 @@ void getTransactionDateTest(void)
             strcpy_s(result, 30, "WRONG_DATE");
             break;
         default:
-            strcpy_s(result, 30, "undefined Error");
+            strcpy_s(result, 30, "undefined ");
             break;
         }
 
-        printf("\n\nTester Name :%sFunction Name: getTransactionDate \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
+        printf("\n\nTester Name :%sFunction Name: getTransactionDate \nTest case %d:\nInput Data:%s \nExpected result:%sActual result: %s\n-----------------\n"
             , testerName, iterate + 1, inputFromUser, expectedCase, result);
     }
 
