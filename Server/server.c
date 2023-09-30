@@ -7,10 +7,14 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
     /*Please Write Comments 80% overall*/
 }
 
+/**********************************************************************************************************************/
+
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence)
 {
     /*Please Write Comments 80% overall*/
 }
+
+/**********************************************************************************************************************/
 
 EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
 {
@@ -28,23 +32,41 @@ EN_serverError_t isBlockedAccount(ST_accountsDB_t *accountRefrence)
     }
     return errorStateBlockAccount;
 }
+/**********************************************************************************************************************/
+
 
 EN_serverError_t isAmountAvailable(ST_terminalData_t *termData, ST_accountsDB_t *accountRefrence)
 {
-    /*Please Write Comments 80% overall*/
+    /*Make Variable To return the errorState*/
+    EN_serverError_t errorStateAmountAvilavle;
+
+    /*Check on The Balance Of Account*/
+    if (termData->transAmount > accountRefrence->balance)
+    {
+        errorStateAmountAvilavle = LOW_BALANCE;
+    }
+    else
+    {
+        errorStateAmountAvilavle = SERVER_OK;
+    }
+    return errorStateAmountAvilavle;
 }
+/**********************************************************************************************************************/
+
 
 EN_serverError_t saveTransaction(ST_transaction_t *transData)
 {
     /*Please Write Comments 80% overall*/
 }
 
+/**********************************************************************************************************************/
+
 void listSavedTransactions(void)
 {
     /*Please Write Comments 80% overall*/
 }
 
-
+/**********************************************************************************************************************/
 
 //Test Functions for terminal
 void recieveTransactionDataTest(void)
