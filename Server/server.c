@@ -52,8 +52,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t *transData)
 
 EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accountRefrence)
 {
-    EN_serverError_t isValidAccount(ST_cardData_t * cardData, ST_accountsDB_t * accountRefrence)
-    {
+
         //variable to return error state
         EN_serverError_t  errorStateValidAccount = SERVER_OK;
         //Variable to store string compare result
@@ -80,7 +79,6 @@ EN_serverError_t isValidAccount(ST_cardData_t *cardData, ST_accountsDB_t *accoun
 
         }
         return errorStateValidAccount;
-    }
 }
 
 /**********************************************************************************************************************/
