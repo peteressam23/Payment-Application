@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+
 //Global array to save and print user input when do test 
 uint8_t inputFromUser[40];
 

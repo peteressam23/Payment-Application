@@ -58,8 +58,16 @@ void main(void)
 
 
    // isBlockedAccountTest();
+   //recieveTransactionDataTest();
   
+  
+    ST_transaction_t test;
+    test.terminalData.transAmount = 10000;
 
+    EN_transState_t error;
+    error = recieveTransactionData(&test);
+    printf("%d", error);
+    
 
 }
 
