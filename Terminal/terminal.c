@@ -248,9 +248,9 @@ void isCardExpriedTest(void)
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
-    getTransactionDate(&testTerminalData);
     for (iterate = 0; iterate < 5; iterate++)
     {
+        getTransactionDate(&testTerminalData);
         returnOfFunction = isCardExpired(&testCardData, &testTerminalData);
 
         printf("Enter expected result:");
