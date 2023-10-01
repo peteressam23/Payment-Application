@@ -69,9 +69,10 @@ void main(void)
     isCardExpriedTest();
     getTransactionAmountTest();
     setMaxAmountTest();
+    isBelowMaxAmountTest();
     */
     
-    isBelowMaxAmountTest();
+    
     
    
 
