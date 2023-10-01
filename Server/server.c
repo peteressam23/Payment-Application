@@ -308,7 +308,7 @@ void isValidAccountTest(void)
     uint8_t testerName[30];
     uint8_t expectedCase[30];
     ST_cardData_t testCardData;
-    ST_accountsDB_t testAccountReference;
+    ST_accountsDB_t testAccountReference={0};
     EN_serverError_t returnOfFunction;
     uint8_t result[30];
 
