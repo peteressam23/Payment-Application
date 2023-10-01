@@ -281,19 +281,19 @@ void isCardExpriedTest(void)
                 strcpy_s(result, 30, "EXPIRED_CARD");
                 break;
 
-            case 4:
-                strcpy_s(result, 30, "INVALID_AMOUNT");
-                break;
-
             default:
                 strcpy_s(result, 30, "undefined Error");
                 break;
             }
 
+           
+
             printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
                 , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase , result);
-            
+            continue;
         } 
+        printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
+            , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase);
     }
 }
 
