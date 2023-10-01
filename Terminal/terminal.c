@@ -248,6 +248,11 @@ void isCardExpriedTest(void)
     
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
+     // Remove trailing newline character, if present
+    size_t nameLength = strlen(testerName);
+    if (nameLength > 0 && testerName[nameLength - 1] == '\n') {
+        testerName[nameLength - 1] = '\0';
+    }
     
     getTransactionDate(&testTerminalData);
     for (iterate = 0; iterate < 5; iterate++)
