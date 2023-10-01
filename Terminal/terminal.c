@@ -253,13 +253,10 @@ void isCardExpriedTest(void)
     if (nameLength > 0 && testerName[nameLength - 1] == '\n') {
         testerName[nameLength - 1] = '\0';
     }
-    
+
     getTransactionDate(&testTerminalData);
     for (iterate = 0; iterate < 5; iterate++)
     {
-
-        printf("Enter expected result:");
-        fgets(expectedCase, sizeof(expectedCase), stdin);
 
         if(getCardExpiryDate(&testCardData) == 0) //0 refer to terminal is okay
         { 
@@ -279,11 +276,11 @@ void isCardExpriedTest(void)
                 strcpy_s(result, 30, "undefined Error");
                 break;
             }
-            printf("\n\nTester Name :%sFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
+            printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
                 , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser ,  expectedCase, result);
             continue;
         } 
-        printf("\n\nTester Name :%sFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
+        printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
             , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase);
     }
 }
