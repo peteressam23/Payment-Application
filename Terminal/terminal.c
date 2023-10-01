@@ -87,6 +87,8 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
         if (expMonth >= transactionMonth)
         {
             errorStateCardExpired = TERMINAL_OK;
+        }else {
+            errorStateCardExpired = EXPIRED_CARD ;
         }
     }
     else
@@ -246,6 +248,11 @@ void isCardExpriedTest(void)
     
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
+     // Remove trailing newline character, if present
+    size_t nameLength = strlen(testerName);
+    if (nameLength > 0 && testerName[nameLength - 1] == '\n') {
+        testerName[nameLength - 1] = '\0';
+    }
     
     getTransactionDate(&testTerminalData);
     for (iterate = 0; iterate < 5; iterate++)
@@ -256,6 +263,8 @@ void isCardExpriedTest(void)
 
         if(getCardExpiryDate(&testCardData) == 0) //0 refer to terminal is okay
         { 
+            printf("Enter expected result:");
+            fgets(expectedCase, sizeof(expectedCase), stdin);
             switch (isCardExpired(&testCardData, &testTerminalData))
             {
             case 0:
