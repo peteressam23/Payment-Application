@@ -155,6 +155,10 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
        // transaction amount is larger than the terminal max allowed amount
        errorStateBelwMax = EXCEED_MAX_AMOUNT;
    }
+   else if(termData->transAmount == 0)
+   {
+    errorStateBelwMax = INVALID_AMOUNT;
+   }
    return errorStateBelwMax;
 
 }
@@ -277,19 +281,19 @@ void isCardExpriedTest(void)
                 strcpy_s(result, 30, "EXPIRED_CARD");
                 break;
 
+            case 4:
+                strcpy_s(result, 30, "INVALID_AMOUNT");
+                break;
+
             default:
                 strcpy_s(result, 30, "undefined Error");
                 break;
             }
 
-           
-
             printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
                 , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase , result);
-            continue;
+            
         } 
-        printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
-            , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase);
     }
 }
 
