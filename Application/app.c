@@ -55,6 +55,7 @@ void main(void)
 
 
 
+
    
    // printf("\n___________ Calling Test Function Card Test______________________________\n\n");
     /*
@@ -71,7 +72,7 @@ void main(void)
     setMaxAmountTest();
     isBelowMaxAmountTest();
     */
-    
+    isBelowMaxAmountTest();
     
     
    
