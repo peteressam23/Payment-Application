@@ -366,7 +366,7 @@ void isBelowMaxAmountTest(void)
 		printf("Enter expected result:");
 		fgets(expectedCase, sizeof(expectedCase), stdin);
 
-        if(returnOfFunction == TERMINAL_OK)
+        if(returnOfFunction == 0)
         {
             switch (isBelowMaxAmount(&testTerminalData))
             {
@@ -381,6 +381,10 @@ void isBelowMaxAmountTest(void)
                 break;
             }
 
+        }
+        else
+        {
+            strcpy_s(result, 30, "INVALID_AMOUNT");
         }
         printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
             , testerName, iterate + 1, inputFromUser, expectedCase, result);	

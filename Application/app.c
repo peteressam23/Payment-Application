@@ -46,6 +46,10 @@ void main(void)
    appTerminalError = isBelowMaxAmount(&appTerminalData);
     printf("%d\n", appTerminalError);
 
+    //////////////////////////////////////////////////////////////////////////////////
+
+   /*Server Section*/
+
 
 
 
@@ -71,9 +75,13 @@ void main(void)
     getTransactionAmountTest();
     setMaxAmountTest();
     isBelowMaxAmountTest();
-    */
     isBelowMaxAmountTest();
+    */
     
+    printf("\n___________ Calling Test Function Server Test______________________________\n\n");
+    /*
+
+    */
     
    
 
@@ -83,61 +91,7 @@ void main(void)
 
 
 
-    /*
-    Test Card Holder Name
-     getCardHolderNameTest();
-    */
-   
-
-    /*
-    Test Card Expire Date
-    getCardExpiryDateTest();
-    */
-    
-
-    /*
-     Test Card PAN
-     getCardPANTest();
-     */
-
-
-
-    /*Terminal Section*/
-    /*
-    Test Transaction Date
-     getTransactionDateTest();
-    */
-
-
-    /*
-    Test Card Expire Date
-    isCardExpriedTest();
-    */
-
-
-    /*
-     Test Transaction Amount
-     getTransactionAmountTest();
-     */
-    
-    /*
-     Test Below MaxAmount
-     isBelowMaxAmountTest();
-    */
-
-    /*
-     Test Set MAx Amount
-     setMaxAmountTest();
-    */
-
-    
-    /*Server Section*/
-
-
-
-
-   // isBlockedAccountTest();
-   //recieveTransactionDataTest();
+  
   
   
  
