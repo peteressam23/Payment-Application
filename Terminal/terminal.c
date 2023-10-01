@@ -376,6 +376,9 @@ void isBelowMaxAmountTest(void)
         case 0:
             strcpy_s(result, 30, "TERMINAL_OK");
             break;
+        case 4:
+            strcpy_s(result, 30, "INVALID_AMOUNT");
+            break;
         case 5:
             strcpy_s(result, 30, "EXCEED_MAX_AMOUNT");
             break;
@@ -386,12 +389,8 @@ void isBelowMaxAmountTest(void)
 
         }
         printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
-            , testerName, iterate + 1, inputFromUser, expectedCase, result);
-            continue;	
+            , testerName, iterate + 1, inputFromUser, expectedCase, result);	
 	}
-    strcpy_s(result, 30, "invalid_amount");
-    printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
-            , testerName, iterate + 1, inputFromUser, expectedCase, result);
 }
 
 /********************************************************************************************************************************/
