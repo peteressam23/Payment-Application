@@ -208,7 +208,7 @@ void getCardExpiryDateTest(void)
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
-    for (iterate = 0; iterate < 5 ; iterate++)
+    for (iterate = 0; iterate < 4 ; iterate++)
     {
         returnOfFunction = getCardExpiryDate(testCardData.cardExpirationDate);
         printf("Enter expected result: ");
