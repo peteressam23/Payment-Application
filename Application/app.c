@@ -51,8 +51,9 @@ void main(void)
     printf("\n___________ Calling Test Function Terminal Test______________________________\n\n");
     /*
     getTransactionDateTest();
-    */
     isCardExpriedTest();
+    */
+   
 
     
    
