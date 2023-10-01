@@ -87,6 +87,8 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
         if (expMonth >= transactionMonth)
         {
             errorStateCardExpired = TERMINAL_OK;
+        }else {
+            errorStateCardExpired = EXPIRED_CARD ;
         }
     }
     else
