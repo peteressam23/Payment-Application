@@ -150,10 +150,6 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
 EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
 {
     EN_terminalError_t errorStateBelwMax = TERMINAL_OK;
-   if(termData->transAmount == 0)
-   {
-    errorStateBelwMax = INVALID_AMOUNT;
-   }
    if(termData->transAmount > termData->maxTransAmount )
    {
        // transaction amount is larger than the terminal max allowed amount
@@ -373,20 +369,17 @@ void isBelowMaxAmountTest(void)
         if(returnOfFunction == TERMINAL_OK)
         {
             switch (isBelowMaxAmount(&testTerminalData))
-        {
-        case 0:
-            strcpy_s(result, 30, "TERMINAL_OK");
-            break;
-        case 4:
-            strcpy_s(result, 30, "INVALID_AMOUNT");
-            break;
-        case 5:
-            strcpy_s(result, 30, "EXCEED_MAX_AMOUNT");
-            break;
-        default:
-            strcpy_s(result, 30, "undefined Error");
-            break;
-        }
+            {
+            case 0:
+                strcpy_s(result, 30, "TERMINAL_OK");
+                break;
+            case 5:
+                strcpy_s(result, 30, "EXCEED_MAX_AMOUNT");
+                break;
+            default:
+                strcpy_s(result, 30, "undefined Error");
+                break;
+            }
 
         }
         printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
