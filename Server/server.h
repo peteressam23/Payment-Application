@@ -9,6 +9,18 @@ typedef enum EN_transState_t
      APPROVED, DECLINED_INSUFFECIENT_FUND, DECLINED_STOLEN_CARD, FRAUD_CARD, INTERNAL_SERVER_ERROR
 }EN_transState_t;
 
+
+
+const char* serverErrorStrings[] = {
+    "APPROVED",
+    "DECLINED_INSUFFECIENT_FUND",
+    "DECLINED_STOLEN_CARD"
+    "FRAUD_CARD"
+    "INTERNAL_SERVER_ERROR"
+};
+
+
+
 typedef struct ST_transaction_t
 {
      ST_cardData_t cardHolderData;
