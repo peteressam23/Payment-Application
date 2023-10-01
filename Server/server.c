@@ -308,7 +308,7 @@ void isValidAccountTest(void)
 
 void isBlockedAccountTest(void)
 {
-    ST_transaction_t testTransaction ;
+    ST_cardData_t testCardData;
     ST_accountsDB_t testAccountRefrence; 
     uint8_t testerName[30];
     uint8_t expectedCase[30];
@@ -317,20 +317,19 @@ void isBlockedAccountTest(void)
     EN_serverError_t returnOfFunction;
 
 
-    
+    getCardPAN & isValidAccount
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
     for(iterate ; iterate <4 ; iterate++)
     {
-        //call getTransactionAmount function to check transaction amount.
-        returnOfFunction = getTransactionAmount(&testTransaction);
-
         printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
 
-        if(returnOfFunction == TERMINAL_OK)
+        //Call getCardPAN & isValidAccount functions to check account existance.
+        if(isValidAccount(&testCardData , &testAccountRefrence ) == 0 && getCardPAN(&testCardData) == 0)
         {
+
             switch (isBlockedAccount(&testTransaction , &testAccountRefrence))
         {
         case 0:
@@ -349,7 +348,6 @@ void isBlockedAccountTest(void)
     }
      printf("\n\nTester Name :%sFunction Name: isBlockedAccount \nTest case %d:\nInput Data: %s\nExpected result:%sActual result: %s\n--------------------------\n"
             , testerName, iterate, inputFromUser, expectedCase, result);
-
 }
 
 
