@@ -329,7 +329,7 @@ void isBlockedAccountTest(void)
         if(isValidAccount(&testCardData , &testAccountRefrence ) == 0 && getCardPAN(&testCardData) == 0)
         {
 
-            switch (isBlockedAccount(&testTransaction , &testAccountRefrence))
+            switch (isBlockedAccount(&testCardData , &testAccountRefrence))
         {
         case 0:
             strcpy_s(result, 30, "SERVER_OK");
