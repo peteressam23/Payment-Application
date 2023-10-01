@@ -418,7 +418,7 @@ void saveTransactionTest(void) {
         transactionDB_t[iterate_1].transactionSequenceNumber = 5;
     }
 
-    for (iterate_2 = 0; iterate_2 < 3; iterate_2++)
+    for (iterate_2  = 0; iterate_2 < 3; iterate_2++)
     {
         printf("Enter expected result:\n");
         fgets(expectedCase, sizeof(expectedCase), stdin);

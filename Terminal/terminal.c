@@ -243,10 +243,50 @@ void getTransactionDateTest(void)
 
 void isCardExpriedTest(void)
 {
-    /*Please Write Comments 80% overall*/
+    ST_terminalData_t testTerminalData;
+    ST_cardData_t testCardData;
+    uint8_t testerName[50];
+    uint8_t expectedCase[50];
+    uint8_t iterate = 0;
+    uint8_t result[30];
+    EN_cardError_t returnOfFunction;
 
+    printf("Enter your name: ");
+    fgets(testerName, sizeof(testerName), stdin);
 
+    getTransactionDate(&testTerminalData);
+    for (iterate = 0; iterate < 5; iterate++)
+    {
+        returnOfFunction = isCardExpired(&testCardData, &testTerminalData);
+
+        printf("Enter expected result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        if(getCardExpiryDate(&testCardData) == 0) //0 refer to terminal is okay
+        { 
+            switch (returnOfFunction)
+            {
+            case 0:
+                strcpy_s(result, 30, "TERMINAL_OK");
+                break;
+
+            case 2:
+                strcpy_s(result, 30, "TERMINAL_OK");
+                break;
+
+            default:
+                strcpy_s(result, 30, "undefined Error");
+                break;
+            }
+            printf("Tester Name :%sFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
+                , testerName, iterate+1, testTerminalData.transactionDate ,  expectedCase, result);
+            continue;
+        } 
+        printf("Tester Name :%sFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
+            , testerName, iterate, testTerminalData.transactionDate, expectedCase);
+    }
 }
+
 
 
 /********************************************************************************************************************************/
