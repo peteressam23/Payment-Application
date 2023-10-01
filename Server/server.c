@@ -317,7 +317,6 @@ void isBlockedAccountTest(void)
     EN_serverError_t returnOfFunction;
 
 
-    getCardPAN & isValidAccount
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
