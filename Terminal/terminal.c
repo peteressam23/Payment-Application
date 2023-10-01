@@ -247,8 +247,6 @@ void isCardExpriedTest(void)
     
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
-    fflush(stdout);
-
 
     for (iterate = 0; iterate < 5; iterate++)
     {
