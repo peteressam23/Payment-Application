@@ -83,6 +83,8 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
     long expYear = strtol(&cardData->cardExpirationDate[3], &endptr, 10);
     long transactionMonth = strtol(&termData->transactionDate[3], &endptr, 10);
     long transactionYear = strtol(&termData->transactionDate[8], &endptr, 10);
+    printf("expYear %ld",expYear);
+    printf("transactionYear %ld",transactionYear);
 
    
     //Check if the expiry year is larger than year of transaction date so it's not expired
@@ -90,7 +92,7 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
     {
         errorStateCardExpired = TERMINAL_OK;
     }
-    if (expYear == transactionYear)
+    else if (expYear == transactionYear)
     {
         //If the years are the same compare the months
         if (expMonth >= transactionMonth)
@@ -98,10 +100,10 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
             errorStateCardExpired = TERMINAL_OK;
         }
     }
-        else
-        {
+    else
+    {
         errorStateCardExpired = EXPIRED_CARD;
-        }
+    }
     
     return errorStateCardExpired;
 }
