@@ -150,15 +150,16 @@ EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData)
 EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
 {
     EN_terminalError_t errorStateBelwMax = TERMINAL_OK;
+   if(termData->transAmount == 0)
+   {
+    errorStateBelwMax = INVALID_AMOUNT;
+   }
    if(termData->transAmount > termData->maxTransAmount )
    {
        // transaction amount is larger than the terminal max allowed amount
        errorStateBelwMax = EXCEED_MAX_AMOUNT;
    }
-   else if(termData->transAmount == 0)
-   {
-    errorStateBelwMax = INVALID_AMOUNT;
-   }
+   
    return errorStateBelwMax;
 
 }
