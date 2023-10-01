@@ -244,9 +244,11 @@ void isCardExpriedTest(void)
     uint8_t iterate = 0;
     uint8_t result[30];
     EN_cardError_t returnOfFunction;
-
+    
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
+    fflush(stdout);
+
 
     for (iterate = 0; iterate < 5; iterate++)
     {
@@ -272,12 +274,10 @@ void isCardExpriedTest(void)
                 strcpy_s(result, 30, "undefined Error");
                 break;
             }
-            fflush(stdout);
             printf("\n\nTester Name :%sFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
                 , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser ,  expectedCase, result);
             continue;
         } 
-        fflush(stdout);
         printf("\n\nTester Name :%sFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
             , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase);
     }
