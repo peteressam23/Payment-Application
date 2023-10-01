@@ -1,4 +1,2 @@
-﻿  terminal.c
-D:\Payment Application\Payment Application\Terminal\terminal.c(30,17): warning C4267: '=': conversion from 'size_t' to 'uint8_t', possible loss of data
-D:\Payment Application\Payment Application\Terminal\terminal.c(192): warning C4716: 'isValidCardPAN': must return a value
+﻿  app.c
   Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe

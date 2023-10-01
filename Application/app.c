@@ -1,8 +1,10 @@
 
 #include "app.h"
+#define MAX_AMOUNT  50000
 
 void main(void)
 {
+
     /*Card Section*/
     //Card Holder Name
     ST_cardData_t appCardData;
@@ -31,6 +33,19 @@ void main(void)
     //Is Card Expired 
     appTerminalError = isCardExpired(&appCardData , &appTerminalData);
     printf("%d\n", appTerminalError);
+    
+    //Get Transaction Amount
+    appTerminalError = getTransactionAmount(&appTerminalData);
+    printf("%d\n", appTerminalError);
+
+    //Set Max Amount
+    appTerminalError = setMaxAmount(&appTerminalData , MAX_AMOUNT);
+    printf("%d\n", appTerminalError);
+
+    //Set Max Amount
+   appTerminalError = isBelowMaxAmount(&appTerminalData);
+    printf("%d\n", appTerminalError);
+
 
 
 
@@ -52,9 +67,11 @@ void main(void)
     /*
     getTransactionDateTest();
     isCardExpriedTest();
+    getTransactionAmountTest();
+    setMaxAmountTest();
     */
-   
-
+    
+    isBelowMaxAmountTest();
     
    
 

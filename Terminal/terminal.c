@@ -165,10 +165,10 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
 EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount)
 {
     /*This is The Error State To Return In The End Of Function*/
-    EN_terminalError_t errorStateMaxAmount = INVALID_MAX_AMOUNT;
+    EN_terminalError_t errorStateMaxAmount;
 
     /*Make This With Initial Value*/
-    termData->maxTransAmount = 0;
+    termData->maxTransAmount;
 
     /*Check If Max Amount Less Than 0 Or Equal*/
     if (maxAmount <= 0)
@@ -202,7 +202,7 @@ void getTransactionDateTest(void)
     uint8_t expectedCase[50]; 
     uint8_t iterate = 0; 
     uint8_t result[30]; 
-    EN_cardError_t returnOfFunction; 
+    EN_terminalError_t returnOfFunction;
 
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
@@ -264,7 +264,7 @@ void isCardExpriedTest(void)
 
         printf("Enter expected result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
-        if(returnOfFunction == 0) //0 refer to terminal is okay
+        if(returnOfFunction == 0) //0 refer to card is okay
         { 
             
             switch (isCardExpired(&testCardData, &testTerminalData))
@@ -306,7 +306,7 @@ void getTransactionAmountTest(void)
     uint8_t expectedCase[50];
     uint8_t iterate = 0;
     uint8_t result[30];
-    EN_cardError_t returnOfFunction;
+    EN_terminalError_t returnOfFunction;
 
     printf("Enter your name: ");
     fgets(testerName, sizeof(testerName), stdin);
@@ -352,7 +352,7 @@ void isBelowMaxAmountTest(void)
     uint8_t expectedCase[50];
     uint8_t iterate = 0;
     uint8_t result[30];
-    EN_cardError_t returnOfFunction;
+    EN_terminalError_t returnOfFunction;
 
 	
 	printf("Enter your name:");
@@ -396,33 +396,49 @@ void setMaxAmountTest(void) {
     uint8_t iterate = 1;
     char result[30];
     float maxAmountTest;
+    EN_terminalError_t returnOfFunction;
+
 
     printf("Enter your name:");
     fgets(testerName, sizeof(testerName), stdin);
 
-    printf("Enter expected result:");
-    fgets(expectedCase, sizeof(expectedCase), stdin);
+
 
     for ( iterate = 1; iterate < 6; iterate++) 
     {
-        
         printf("Enter transaction max amount: ");
         scanf_s("%f", &maxAmountTest);
-        
-        switch (setMaxAmount(&testTerminalData , maxAmountTest)) 
+
+        returnOfFunction = setMaxAmount(&testTerminalData , maxAmountTest);
+
+       
+        printf("Enter expected result:");
+        fgets(expectedCase, sizeof(expectedCase), stdin);
+
+        // Remove trailing newline character, if present
+        /*
+        size_t nameLength = strlen(expectedCase);
+        if (nameLength > 0 && expectedCase[nameLength - 1] == '\n')
+        {
+            expectedCase[nameLength - 1] = '\0';
+        }
+        */
+   
+
+        switch (returnOfFunction)
         {
         case 0:
 
-            strcpy_s(result, 30, "TERMINAL_OK-PASS");
+            strcpy_s(result, 30, "TERMINAL_OK");
             break;
         case 6:
-            strcpy_s(result, 30, "INVALID_MAX_AMOUNT-FAIL");
+            strcpy_s(result, 30, "INVALID_MAX_AMOUNT");
             break;
         default:
             strcpy_s(result, 30, "undefined Error");
             break;
         }
-        printf("\n\nTester Name :%sFunction Name:setMaxAmount \nTest case %d:\nInput Data:%f\nExpected result :%sActual result: %s\n-----------------\n",
+        printf("\n\nTester Name :%sFunction Name:setMaxAmount \nTest case %d:\nInput Data:%f\nExpected result :%s\nActual result: %s\n-----------------\n",
             testerName, iterate, maxAmountTest, expectedCase, result);
     }
 }
