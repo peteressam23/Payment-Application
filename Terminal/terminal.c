@@ -21,6 +21,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
     localtime_s(&localTime, &currentTime);
     //store Date in dateString variable 
     sprintf_s(dateString, sizeof(dateString), "%02d/%02d/%04d", localTime.tm_mday, localTime.tm_mon + 1, localTime.tm_year + 1900);
+    printf("system date %s" , dateString);
 
 
     //Get the transaction date from user
@@ -83,6 +84,7 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
     uint8_t transactionMonth = (uint8_t)strtol(&termData->transactionDate[3], &endptr, 10);
     uint8_t transactionYear = (uint8_t)strtol(&termData->transactionDate[8], &endptr, 10);
 
+   
     //Check if the expiry year is larger than year of transaction date so it's not expired
     if (expYear > transactionYear)
     {
@@ -96,10 +98,11 @@ EN_terminalError_t isCardExpired(ST_cardData_t* cardData, ST_terminalData_t* ter
             errorStateCardExpired = TERMINAL_OK;
         }
     }
-    else
-    {
+        else
+        {
         errorStateCardExpired = EXPIRED_CARD;
-    }
+        }
+    
     return errorStateCardExpired;
 }
 
