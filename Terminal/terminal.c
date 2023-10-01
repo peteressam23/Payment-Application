@@ -256,6 +256,8 @@ void isCardExpriedTest(void)
 
         if(getCardExpiryDate(&testCardData) == 0) //0 refer to terminal is okay
         { 
+            printf("Enter expected result:");
+            fgets(expectedCase, sizeof(expectedCase), stdin);
             switch (isCardExpired(&testCardData, &testTerminalData))
             {
             case 0:
