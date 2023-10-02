@@ -65,7 +65,7 @@ void appStart(void)
 		printf("INTERNAL SERVER ERROR");
 		break;
 	default:
-		printf("UNDEFIEND Error");
+		printf("UNDEFIEND ERROR");
 		break;
 	}
 }
