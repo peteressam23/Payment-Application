@@ -50,7 +50,7 @@ void appStart(void)
 	switch (recieveTransactionData(&transaction))
 	{
 	case 0:
-		printf("Transaction APPROVED");
+		printf(" APPROVED");
 		break;
 	case 1:
 		printf("DECLINED_INSUFFECIENT_FUND");
@@ -59,13 +59,13 @@ void appStart(void)
 		printf("DECLINED_STOLEN_CARD");
 		break;
 	case 3:
-		printf("FRAUD_CARD");
+		printf("FRAUD CARD");
 		break;
 	case 4:
-		printf("INTERNAL_SERVER_ERROR");
+		printf("INTERNAL SERVER ERROR");
 		break;
 	default:
-		printf("undefined Error");
+		printf("UNDEFIEND Error");
 		break;
 	}
 }
