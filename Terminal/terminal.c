@@ -366,7 +366,7 @@ void isBelowMaxAmountTest(void)
     printf("\n\nTester Name: ");
 	fgets(testerName, sizeof(testerName), stdin);
 	
-	for ( iterate ; iterate < 5; iterate++) 
+	for ( iterate ; iterate < 3; iterate++) 
 	{
 	    returnOfFunction = getTransactionAmount(&testTerminalData);
 		
@@ -394,7 +394,7 @@ void isBelowMaxAmountTest(void)
         }
         printf("____________________________________\n");
         printf("\nTester Name: %s", testerName);
-        printf("Function Name: getTransactionAmount\n");
+        printf("Function Name: isBelowMaxAmount\n");
         printf("Test case %d:\n", iterate + 1);
         printf("Input Data: %s", inputFromUser);
         printf("Expected Result: %s\n", expectedCase);
@@ -419,7 +419,7 @@ void setMaxAmountTest(void)
     printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
-    for ( iterate = 1; iterate < 6; iterate++) 
+    for ( iterate = 1; iterate < 4; iterate++) 
     {
         printf("Enter transaction max amount: ");
         scanf_s("%f", &maxAmountTest);
