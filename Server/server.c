@@ -147,6 +147,7 @@ EN_serverError_t saveTransaction(ST_transaction_t* transData)
 
 void listSavedTransactions(void)
 {
+    ST_cardData_t cardData;
     uint8_t iterate = 0;
     uint8_t trans[5][30] = {
                             {"APPROVED"},
@@ -165,7 +166,7 @@ void listSavedTransactions(void)
         {
             break;
         }
-
+    
         printf("#####################################################\n");
         printf("Transaction Sequence Number: %d\n", transactionDB_t[iterate].transactionSequenceNumber);
         printf("Transaction Date: %s\n", &transactionDB_t[iterate].terminalData.transactionDate);
