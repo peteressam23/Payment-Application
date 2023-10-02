@@ -1,3 +1,0 @@
-﻿  server.c
-D:\Payment Application\Payment Application\Server\server.c(150,19): warning C4101: 'cardData': unreferenced local variable
-  Payment Application.vcxproj -> D:\Payment Application\x64\Debug\Payment Application.exe
