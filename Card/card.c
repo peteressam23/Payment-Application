@@ -51,7 +51,6 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
         strcpy_s(cardData->cardHolderName, sizeof(inputFromUser), inputFromUser);
     }
     return errorStateHolderName;
-
 }
 
 /*************************************************************************************************************************************/
@@ -107,7 +106,6 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
        errorStateExpireDate =  CARD_OK;
      }
      return errorStateExpireDate;
-
 }
 
 /*************************************************************************************************************************************/
@@ -150,12 +148,10 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
     {
         strcpy_s(cardData->primaryAccountNumber, sizeof(cardData->primaryAccountNumber), inputFromUser);
     }
-  
     return ErrorStatePAN;
 }
 
 /*************************************************************************************************************************************/
-
 //Test Functions for card
 
 void getCardHolderNameTest(void)
@@ -168,7 +164,7 @@ void getCardHolderNameTest(void)
     uint8_t result[30];
 
     //To Get The Name Of Tester
-    printf("Tester Name: ");
+    printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
     //Iterations for different test cases
@@ -189,13 +185,19 @@ void getCardHolderNameTest(void)
         default:
             strcpy_s(result, 30, "UNDEFINED");
         }
-        printf("\n\nTester Name :%sFunction Name: getCardHolderName \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------------\n"
-            , testerName, iterate, inputFromUser, expectedCase, result);
+
+        printf("____________________________________\n");
+        printf("\nTester Name: %s\n", testerName);
+        printf("Function Name: getCardHolderName\n");
+        printf("Test case %d:\n" , iterate);
+        printf("Input Data: %s\n", inputFromUser);
+        printf("Expected Result: %s", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");
     }
 }
 
 /*************************************************************************************************************************************/
-
 void getCardExpiryDateTest(void)
 {
     ST_cardData_t testCardData;
@@ -205,13 +207,13 @@ void getCardExpiryDateTest(void)
     uint8_t result[30];
     EN_cardError_t returnOfFunction;
 
-    printf("Enter your name: ");
+    printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
     for (iterate = 0; iterate < 4 ; iterate++)
     {
         returnOfFunction = getCardExpiryDate(testCardData.cardExpirationDate);
-        printf("Enter expected result: ");
+        printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
         switch (returnOfFunction)
         {
@@ -226,10 +228,17 @@ void getCardExpiryDateTest(void)
             break;
         }
 
-        printf("\n\nTester Name :%sFunction Name: getCardExpiryDate \nTest case %d:\nInput Data:%s\nExpected result:%sActual result: %s\n-----------------\n"
-            , testerName, iterate+1 , inputFromUser, expectedCase, result);
-    }
 
+        printf("____________________________________\n");
+        printf("\nTester Name: %s\n", testerName);
+        printf("Function Name: getCardExpiryDate\n");
+        printf("Test case %d:\n", iterate+1);
+        printf("Input Data: %s\n", inputFromUser);
+        printf("Expected Result: %s", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");
+
+    }
 }
 
 /*************************************************************************************************************************************/
@@ -244,17 +253,15 @@ void getCardPANTest(void)
     uint8_t iterate = 0;
 
 
-    printf("Enter your name: ");
+    printf("\n\nTester Name: ");
     gets(testerName);
 
     for (iterate = 0 ; iterate < 5 ; iterate++)
     {
         returnOfFunction = getCardPAN(testCardData.primaryAccountNumber);
         
-        
-        printf("Enter expected result: ");
+        printf("Expected Result:");
         gets(expectedCase);
-
         switch (returnOfFunction)
         {
         case 0:
@@ -267,8 +274,15 @@ void getCardPANTest(void)
             strcpy_s(result, 30, "undefined Error");
             break;
         }
-        printf("\n\nTester Name :%sFunction Name: getCardPAN \nTest case %d:\nInput Data:%s\nExpected result : %s\nActual result: %s\n-----------------\n"
-            , testerName, iterate+1, inputFromUser, expectedCase, result);
+
+        printf("____________________________________\n");
+        printf("\nTester Name: %s\n", testerName);
+        printf("Function Name: getCardPAN\n");
+        printf("Test case %d:\n", iterate + 1);
+        printf("Input Data: %s\n", inputFromUser);
+        printf("Expected Result: %s\n", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");
     }
 }
 

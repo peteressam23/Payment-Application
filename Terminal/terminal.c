@@ -3,8 +3,8 @@
 // Function Implementations
 
 EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
-{ //Transaction date format -> 10 digits  (29/09/2023).
-
+{
+    //Transaction date format -> 10 digits  (29/09/2023).
     time_t currentTime;
     struct tm localTime;
     uint8_t inputLen;
@@ -60,8 +60,6 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
          
      //return error state
      return errorStateTransactionDate;
-
-
 }
 
 
@@ -155,9 +153,7 @@ EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData)
        // transaction amount is larger than the terminal max allowed amount
        errorStateBelwMax = EXCEED_MAX_AMOUNT;
    }
-   
    return errorStateBelwMax;
-
 }
 
 /********************************************************************************************************************************/
@@ -205,17 +201,16 @@ void getTransactionDateTest(void)
     uint8_t result[30]; 
     EN_terminalError_t returnOfFunction;
 
-    printf("Enter your name: ");
+    printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
     for (iterate = 0 ; iterate < 5 ; iterate++)
     {
         returnOfFunction = getTransactionDate(&testTerminalData);
 
-        printf("Enter expected result: "); 
+        printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
         
-
         switch (returnOfFunction)
         {
         case 0:
@@ -229,11 +224,15 @@ void getTransactionDateTest(void)
             break;
         }
 
-        printf("\n\nTester Name :%sFunction Name: getTransactionDate \nTest case %d:\nInput Data:%s \nExpected result:%sActual result: %s\n-----------------\n"
-            , testerName, iterate + 1, inputFromUser, expectedCase, result);
+        printf("____________________________________\n");
+        printf("\nTester Name: %s\n", testerName);
+        printf("Function Name: getTransactionDate\n");
+        printf("Test case %d:\n", iterate + 1);
+        printf("Input Data: %s\n", inputFromUser);
+        printf("Expected Result: %s", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");
     }
-
-
 }
 
 /********************************************************************************************************************************/
@@ -248,11 +247,11 @@ void isCardExpriedTest(void)
     uint8_t result[30];
     EN_cardError_t returnOfFunction;
     
-    printf("Enter your name: ");
+    printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
-
     getTransactionDate(&testTerminalData);
+
     for (iterate = 0; iterate < 5; iterate++)
     {
         // Remove trailing newline character, if present
@@ -261,13 +260,14 @@ void isCardExpriedTest(void)
         {
             testerName[nameLength - 1] = '\0';
         }
+
         returnOfFunction = getCardExpiryDate(&testCardData);
 
-        printf("Enter expected result:");
+        printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
+
         if(returnOfFunction == 0) //0 refer to card is okay
         { 
-            
             switch (isCardExpired(&testCardData, &testTerminalData))
             {
             case 0:
@@ -283,22 +283,29 @@ void isCardExpriedTest(void)
                 break;
             }
 
-           
-
-            printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: %s\n-----------------\n"
-                , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase , result);
+            printf("____________________________________\n");
+            printf("\nTester Name: %s\n", testerName);
+            printf("Function Name: isCardExpired\n");
+            printf("Test case %d:\n", iterate + 1);
+            printf("Input Data:(%s)&(%s)\n", testTerminalData.transactionDate, inputFromUser);
+            printf("Expected Result: %s\n", expectedCase);
+            printf("Actual Result: %s\n", result);
+            printf("____________________________________\n\n");
             continue;
         } 
-        printf("\n\nTester Name :%s\nFunction Name: isCardExpired \nTest case %d:\nInput Data:(%s)&(%s)\nExpected result : %sActual result: Wrong Expiry Date\n-----------------\n"
-            , testerName, iterate+1, testTerminalData.transactionDate,inputFromUser , expectedCase);
+
+        printf("____________________________________\n");
+        printf("\nTester Name: %s\n", testerName);
+        printf("Function Name: isCardExpired\n");
+        printf("Test case %d:\n", iterate + 1);
+        printf("Input Data:(%s)&(%s)\n", testTerminalData.transactionDate, inputFromUser);
+        printf("Expected Result: %s", expectedCase);
+        printf("Actual Result: Wrong Expiry Date\n");
+        printf("____________________________________\n\n");
     }
 }
 
-
-
 /********************************************************************************************************************************/
-
-
 
 void getTransactionAmountTest(void)
 {
@@ -309,16 +316,15 @@ void getTransactionAmountTest(void)
     uint8_t result[30];
     EN_terminalError_t returnOfFunction;
 
-    printf("Enter your name: ");
+    printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
 
     for (iterate = 0; iterate < 5; iterate++)
     {
         returnOfFunction = getTransactionAmount(&testTerminalData);
 
-        printf("Enter expected result: ");
+        printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
-
 
         switch (returnOfFunction)
         {
@@ -333,17 +339,18 @@ void getTransactionAmountTest(void)
             break;
         }
 
-        printf("\n\nTester Name :%sFunction Name: getTransactionAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
-            , testerName, iterate + 1, inputFromUser, expectedCase, result);
+        printf("____________________________________\n");
+        printf("\nTester Name: %s", testerName);
+        printf("Function Name: getTransactionAmount\n");
+        printf("Test case %d:\n", iterate + 1);
+        printf("Input Data: %s",inputFromUser);
+        printf("Expected Result: %s", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");
     }
-
-
 }
 
-
-
 /********************************************************************************************************************************/
-
 
 void isBelowMaxAmountTest(void) 
 {	
@@ -356,14 +363,14 @@ void isBelowMaxAmountTest(void)
     EN_terminalError_t returnOfFunction;
 
 	
-	printf("Enter your name:");
+    printf("\n\nTester Name: ");
 	fgets(testerName, sizeof(testerName), stdin);
 	
 	for ( iterate ; iterate < 5; iterate++) 
 	{
 	    returnOfFunction = getTransactionAmount(&testTerminalData);
 		
-		printf("Enter expected result:");
+        printf("Expected Result:");
 		fgets(expectedCase, sizeof(expectedCase), stdin);
 
         if(returnOfFunction == 0)
@@ -380,21 +387,26 @@ void isBelowMaxAmountTest(void)
                 strcpy_s(result, 30, "undefined Error");
                 break;
             }
-
         }
         else
         {
             strcpy_s(result, 30, "INVALID_AMOUNT");
         }
-        printf("\n\nTester Name :%sFunction Name: isBelowMaxAmount \nTest case %d:\nInput Data:%s Expected result:%sActual result: %s\n-----------------\n"
-            , testerName, iterate + 1, inputFromUser, expectedCase, result);	
+        printf("____________________________________\n");
+        printf("\nTester Name: %s", testerName);
+        printf("Function Name: getTransactionAmount\n");
+        printf("Test case %d:\n", iterate + 1);
+        printf("Input Data: %s", inputFromUser);
+        printf("Expected Result: %s\n", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");	
 	}
 }
 
 /********************************************************************************************************************************/
 
-void setMaxAmountTest(void) {
-   
+void setMaxAmountTest(void) 
+{
     ST_terminalData_t testTerminalData;
     uint8_t testerName[50];
     uint8_t expectedCase[50];
@@ -404,10 +416,8 @@ void setMaxAmountTest(void) {
     EN_terminalError_t returnOfFunction;
 
 
-    printf("Enter your name:");
+    printf("\n\nTester Name: ");
     fgets(testerName, sizeof(testerName), stdin);
-
-
 
     for ( iterate = 1; iterate < 6; iterate++) 
     {
@@ -416,20 +426,17 @@ void setMaxAmountTest(void) {
 
         returnOfFunction = setMaxAmount(&testTerminalData , maxAmountTest);
 
-       
-        printf("Enter expected result:");
+        printf("Expected Result:");
         fgets(expectedCase, sizeof(expectedCase), stdin);
 
         // Remove trailing newline character, if present
-        /*
+       
         size_t nameLength = strlen(expectedCase);
         if (nameLength > 0 && expectedCase[nameLength - 1] == '\n')
         {
             expectedCase[nameLength - 1] = '\0';
         }
-        */
-   
-
+       
         switch (returnOfFunction)
         {
         case 0:
@@ -443,8 +450,14 @@ void setMaxAmountTest(void) {
             strcpy_s(result, 30, "undefined Error");
             break;
         }
-        printf("\n\nTester Name :%sFunction Name:setMaxAmount \nTest case %d:\nInput Data:%f\nExpected result :%s\nActual result: %s\n-----------------\n",
-            testerName, iterate, maxAmountTest, expectedCase, result);
+        printf("\n____________________________________\n");
+        printf("\nTester Name: %s", testerName);
+        printf("Function Name: setMaxAmountTest\n");
+        printf("Test case %d:\n", iterate);
+        printf("Input Data: %f\n", maxAmountTest);
+        printf("Expected Result: %s\n", expectedCase);
+        printf("Actual Result: %s\n", result);
+        printf("____________________________________\n\n");
     }
 }
 

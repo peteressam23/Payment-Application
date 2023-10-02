@@ -10,10 +10,6 @@ typedef enum EN_transState_t
 }EN_transState_t;
 
 
-
-
-
-
 typedef struct ST_transaction_t
 {
      ST_cardData_t cardHolderData;
@@ -39,12 +35,6 @@ typedef struct ST_accountsDB_t
      EN_accountState_t state;
      uint8_t primaryAccountNumber[20];
 }ST_accountsDB_t;
-
-
-
-
-
-
 
 
 
