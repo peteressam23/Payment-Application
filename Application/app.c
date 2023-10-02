@@ -1,10 +1,10 @@
 #include "app.h"
 
-
-
-void main()
+int main()
 {
 	appStart();
+
+	return 0;
 }
 
 
@@ -14,29 +14,41 @@ void main()
 
 
 
-
+/*Start The Application*/
 void appStart(void) 
 {
-	ST_transaction_t trans1;
-	int err = 0;
-	err = getCardData(&trans1.cardHolderData);
-	if (err != 0) {
-		printf("CARD_ERROR: %s\n", cardErrorState[err]);
+	printf("\t\t------------------------------------------------------------------------------\n");
+	printf("\t\t\t\t\tWelcome In Payment Application\t\t\t\t\t\t\n");
+	printf("\t\t-------------------------------------------------------------------------------\n");
+
+	ST_transaction_t transaction;
+	uint32_t errorState = 0;
+	/*If Error State Not equal Card Ok make in if Condition*/
+	errorState = getCardData(&transaction.cardHolderData);
+	if (errorState != 0) 
+	{
+		printf("CARD ERROR: %s\n", cardErrorState[errorState]);
 		printf("Card DECLINED");
 		return;
 	}
-	err = getTerminalData(&trans1.terminalData);
-	if (err != 0) {
-		printf("Terminal_ERROR: %s\n", terminalErrorState[err]);
+	/*If Error State Not equal Terminal Ok make in if Condition*/
+	errorState = getTerminalData(&transaction.terminalData);
+	if (errorState != 0) 
+	{
+		printf("Terminal ERROR: %s\n", terminalErrorState[errorState]);
 		printf("Transaction DECLINED");
 		return;
 	}
-	if (isCardExpired(&trans1.cardHolderData, &trans1.terminalData) == 2) {
+	/*If Error State  equal EXPIRED CARD make in if Condition*/
+	if (isCardExpired(&transaction.cardHolderData, &transaction.terminalData) == 2) 
+	{
 		printf("CARD_ERROR: %s\n", cardErrorState[EXPIRED_CARD]);
 		printf("Card DECLINED");
 		return;
 	}
-	switch (recieveTransactionData(&trans1)) {
+	/*Choose From List After Know The Return Of Function */
+	switch (recieveTransactionData(&transaction))
+	{
 	case 0:
 		printf("Transaction APPROVED");
 		break;
@@ -56,10 +68,9 @@ void appStart(void)
 		printf("undefined Error");
 		break;
 	}
-
-
 }
 
+/*To Get All Data In Card*/
 EN_cardError_t getCardData(ST_cardData_t* cardData) 
 {
 	if (getCardHolderName(cardData) == 1) return WRONG_NAME;
@@ -68,7 +79,7 @@ EN_cardError_t getCardData(ST_cardData_t* cardData)
 	return CARD_OK;
 }
 
-
+/*To Get All Data In Terminal*/
 EN_terminalError_t getTerminalData(ST_terminalData_t* termData) 
 {
 	getTransactionDate(termData);

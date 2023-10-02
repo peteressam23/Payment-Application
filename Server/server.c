@@ -1,7 +1,6 @@
 #include "server.h"
 
 /***************************************Global Arrays***********************************************************/
-ST_transaction_t ST_transaction = { 0 };
 //Create a global array of ST_accountsDB_t for the valid accounts database.
 //Fill in the array initially with any valid data.
 ST_accountsDB_t accountsDB[255] = 
@@ -30,7 +29,6 @@ const char* serverErrorStrings[] = {
     "FRAUD_CARD"
     "INTERNAL_SERVER_ERROR"
 };
-
 
 
 /***************************************Function Implementations ****************************************************/
@@ -69,9 +67,7 @@ EN_transState_t recieveTransactionData(ST_transaction_t* transData)
     return transData->transState;
 }
 
-
 /**********************************************************************************************************************/
-
 
 EN_serverError_t isValidAccount(ST_cardData_t* cardData, ST_accountsDB_t* accountRefrence)
 {
@@ -298,7 +294,6 @@ void isValidAccountTest(void)
     }
 }
 
-
 void isBlockedAccountTest(void)
 {
     ST_cardData_t testCardData;
@@ -356,9 +351,6 @@ void isBlockedAccountTest(void)
         }
     }
 }
-
-
-
 
 void isAmountAvailableTest(void)
 {
@@ -467,10 +459,61 @@ void saveTransactionTest(void)
     }
 }
 
-/*
 void listSavedTransactionsTest(void)
 {
+    uint8_t testerName[30];
+    uint8_t expectedCase[30];
+    ST_transaction_t testTransaction3, testTransaction1, testTransaction2;
+    uint8_t result[30];
 
-    //Please Write Comments 80% overall
+    testTransaction1.transactionSequenceNumber = 3;
+    testTransaction1.transState = 0;
+    testTransaction1.terminalData.transAmount = 2000;
+    testTransaction1.terminalData.maxTransAmount = 50000;
+
+    strcpy_s(testTransaction1.cardHolderData.cardExpirationDate, 06, 12 / 22);
+    strcpy_s(testTransaction1.cardHolderData.cardHolderName, 25, "Mario Saad Mario Saad");
+    strcpy_s(testTransaction1.cardHolderData.primaryAccountNumber, 20, "7080102030405060");
+    strcpy_s(testTransaction1.terminalData.transactionDate, 12, "11/11/2011");
+
+
+    testTransaction2.transactionSequenceNumber = 11;
+    testTransaction2.transState = 4;
+    testTransaction2.terminalData.transAmount = 55000;
+    testTransaction2.terminalData.maxTransAmount = 50000;
+
+    strcpy_s(testTransaction2.cardHolderData.cardExpirationDate, 6, 05 / 26);
+    strcpy_s(testTransaction2.cardHolderData.cardHolderName, 25, "Nadeen Adel Mohammed Mo");
+    strcpy_s(testTransaction2.cardHolderData.primaryAccountNumber, 20, "1020304050607080");
+    strcpy_s(testTransaction2.terminalData.transactionDate, 12, "01/10/2023");
+
+    testTransaction3.transactionSequenceNumber = 20;
+    testTransaction3.transState = 1;
+    testTransaction3.terminalData.transAmount = 500;
+    testTransaction3.terminalData.maxTransAmount = 50000;
+
+    strcpy_s(testTransaction3.cardHolderData.cardExpirationDate, 6, 12 / 23);
+    strcpy_s(testTransaction3.cardHolderData.cardHolderName, 25, "Peter Essam Peter Essamm");
+    strcpy_s(testTransaction3.cardHolderData.primaryAccountNumber, 20, "3040506070801020");
+    strcpy_s(testTransaction3.terminalData.transactionDate, 12, "25/09/2023");
+
+
+    transactionDB_t[0] = testTransaction1;
+    transactionDB_t[1] = testTransaction2;
+    transactionDB_t[2] = testTransaction3;
+    printf("Enter Your Name: ");
+    fgets(testerName, sizeof(testerName), stdin);
+
+    printf("Enter Expected Result: ");
+    fgets(expectedCase, sizeof(expectedCase), stdin);
+    listSavedTransactions();
+    strcpy_s(result, 30, "SERVER_OK");
+
+    printf("____________________________________\n");
+    printf("\nTester Name: %s\n", testerName);
+    printf("Function Name: listSavedTransactions\n");
+    printf("Test case :\n");
+    printf("Expected Result: %s\n", expectedCase);
+    printf("Actual Result: %s\n", result);
+    printf("____________________________________\n\n");
 }
-*/
